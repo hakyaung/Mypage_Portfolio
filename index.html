@@ -19,8 +19,8 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-weight: 300;
             line-height: 1.4;
-            color: #1a1a1a;
-            background: #fafafa;
+            color: #2c3e2c;
+            background: #f8faf8;
             overflow-x: hidden;
         }
 
@@ -28,7 +28,7 @@
         .cursor {
             width: 20px;
             height: 20px;
-            border: 2px solid #1a1a1a;
+            border: 2px solid #3a5743;
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -47,7 +47,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(250, 250, 250, 0.9);
+            background: rgba(248, 250, 248, 0.9);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
         }
@@ -55,7 +55,7 @@
         .logo {
             font-size: 18px;
             font-weight: 500;
-            color: #1a1a1a;
+            color: #3a5743;
         }
 
         .menu {
@@ -65,7 +65,7 @@
 
         .menu a {
             text-decoration: none;
-            color: #1a1a1a;
+            color: #3a5743;
             font-size: 16px;
             font-weight: 300;
             position: relative;
@@ -84,7 +84,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            background: linear-gradient(135deg, #f8faf8 0%, #e8efe8 100%);
         }
 
         .hero-content {
@@ -97,12 +97,12 @@
             font-weight: 200;
             line-height: 0.9;
             margin-bottom: 30px;
-            color: #1a1a1a;
+            color: #3a5743;
         }
 
         .hero .subtitle {
             font-size: clamp(1.2rem, 3vw, 2rem);
-            color: #666;
+            color: #6a806a;
             margin-bottom: 50px;
             font-weight: 300;
         }
@@ -113,7 +113,7 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 14px;
-            color: #666;
+            color: #6a806a;
             animation: bounce 2s infinite;
         }
 
@@ -134,7 +134,7 @@
 
         /* 소개 섹션 */
         .about {
-            background: #fff;
+            background: #f1f7f1;
         }
 
         .about-grid {
@@ -149,11 +149,12 @@
             font-weight: 200;
             line-height: 1.1;
             margin-bottom: 40px;
+            color: #3a5743;
         }
 
         .about-text p {
             font-size: 18px;
-            color: #666;
+            color: #5a755a;
             margin-bottom: 30px;
             max-width: 500px;
         }
@@ -172,19 +173,19 @@
         .stat-number {
             font-size: 3rem;
             font-weight: 200;
-            color: #1a1a1a;
+            color: #3a5743;
         }
 
         .stat-label {
             font-size: 14px;
-            color: #666;
+            color: #6a806a;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         /* 포트폴리오 섹션 */
         .portfolio {
-            background: #f8f8f8;
+            background: #f1f7f1;
             padding: 150px 50px;
         }
 
@@ -197,6 +198,7 @@
             font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 200;
             margin-bottom: 30px;
+            color: #3a5743;
         }
 
         .portfolio-filter {
@@ -210,7 +212,7 @@
             background: none;
             border: none;
             font-size: 16px;
-            color: #666;
+            color: #6a806a;
             cursor: pointer;
             padding: 10px 0;
             position: relative;
@@ -219,7 +221,7 @@
 
         .filter-btn.active,
         .filter-btn:hover {
-            color: #1a1a1a;
+            color: #3a5743;
         }
 
         .filter-btn.active::after {
@@ -229,7 +231,7 @@
             left: 0;
             width: 100%;
             height: 1px;
-            background: #1a1a1a;
+            background: #3a5743;
         }
 
         .portfolio-grid {
@@ -244,23 +246,41 @@
             overflow: hidden;
             transition: all 0.5s ease;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(58, 87, 67, 0.1);
         }
 
         .portfolio-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(58, 87, 67, 0.15);
         }
 
         .portfolio-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(45deg, #e0e0e0, #f0f0f0);
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: #999;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(58, 87, 67, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image::after {
+            opacity: 1;
         }
 
         .portfolio-item:hover .portfolio-image {
@@ -275,10 +295,11 @@
             font-size: 24px;
             font-weight: 400;
             margin-bottom: 15px;
+            color: #3a5743;
         }
 
         .portfolio-content p {
-            color: #666;
+            color: #5a755a;
             font-size: 16px;
             line-height: 1.6;
         }
@@ -287,19 +308,23 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .tag {
             font-size: 12px;
-            color: #999;
+            color: #7a9d7a;
             text-transform: uppercase;
             letter-spacing: 1px;
+            padding: 4px 10px;
+            background: rgba(122, 157, 122, 0.1);
+            border-radius: 3px;
         }
 
         /* 업로드 섹션 */
         .upload {
-            background: #1a1a1a;
-            color: #fff;
+            background: #2c3e2c;
+            color: #f1f7f1;
         }
 
         .upload-content {
@@ -319,7 +344,7 @@
         }
 
         .upload-area {
-            border: 2px dashed #333;
+            border: 2px dashed #5a755a;
             border-radius: 10px;
             padding: 60px 40px;
             text-align: center;
@@ -329,30 +354,30 @@
         }
 
         .upload-area:hover {
-            border-color: #666;
-            background: rgba(255,255,255,0.05);
+            border-color: #7a9d7a;
+            background: rgba(122, 157, 122, 0.05);
         }
 
         .upload-area.dragover {
-            border-color: #fff;
-            background: rgba(255,255,255,0.1);
+            border-color: #f1f7f1;
+            background: rgba(122, 157, 122, 0.1);
         }
 
         .upload-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: #666;
+            color: #5a755a;
         }
 
         .upload-text {
             font-size: 18px;
-            color: #ccc;
+            color: #c8d6c8;
             margin-bottom: 10px;
         }
 
         .upload-subtext {
             font-size: 14px;
-            color: #666;
+            color: #5a755a;
         }
 
         .form-group {
@@ -363,18 +388,19 @@
         .form-group label {
             display: block;
             margin-bottom: 10px;
-            color: #ccc;
+            color: #c8d6c8;
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #333;
-            color: #fff;
+            background: rgba(241, 247, 241, 0.1);
+            border: 1px solid #5a755a;
+            color: #f1f7f1;
             padding: 15px;
             font-size: 16px;
             border-radius: 5px;
@@ -382,15 +408,16 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: #666;
-            background: rgba(255,255,255,0.15);
+            border-color: #7a9d7a;
+            background: rgba(241, 247, 241, 0.15);
         }
 
         .submit-btn {
-            background: #fff;
-            color: #1a1a1a;
+            background: #f1f7f1;
+            color: #2c3e2c;
             border: none;
             padding: 15px 40px;
             font-size: 16px;
@@ -401,13 +428,13 @@
         }
 
         .submit-btn:hover {
-            background: #f0f0f0;
+            background: #e8efe8;
             transform: translateY(-2px);
         }
 
         /* 푸터 */
         .footer {
-            background: #fff;
+            background: #f1f7f1;
             padding: 100px 50px 50px;
             text-align: center;
         }
@@ -421,6 +448,7 @@
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 30px;
+            color: #3a5743;
         }
 
         .contact-info {
@@ -436,7 +464,7 @@
 
         .contact-label {
             font-size: 12px;
-            color: #999;
+            color: #7a9d7a;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 10px;
@@ -444,7 +472,7 @@
 
         .contact-value {
             font-size: 16px;
-            color: #1a1a1a;
+            color: #3a5743;
         }
 
         /* 애니메이션 */
@@ -548,7 +576,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>CREATIVE<br>PORTFOLIO</h1>
-            <p class="subtitle">디자인과 창의성의 만남</p>
+            <p class="subtitle">자연과 조화로운 디자인의 만남</p>
         </div>
         <div class="scroll-indicator">
             ↓ Scroll to explore
@@ -561,8 +589,8 @@
             <div class="about-grid">
                 <div class="about-text">
                     <h2>PASSIONATE<br>DESIGNER</h2>
-                    <p>창의적인 디자인과 혁신적인 아이디어로 브랜드의 가치를 높이는 일에 열정을 가지고 있습니다.</p>
-                    <p>각 프로젝트마다 독특하고 의미 있는 스토리를 만들어내며, 클라이언트의 비전을 현실로 만들어 드립니다.</p>
+                    <p>자연에서 영감을 받은 디자인으로 브랜드의 본질적인 가치를 표현하는 일에 열정을 가지고 있습니다.</p>
+                    <p>각 프로젝트마다 자연과 조화를 이루는 스토리를 만들어내며, 클라이언트의 비전을 현실로 만들어 드립니다.</p>
                 </div>
                 <div class="stats">
                     <div class="stat">
@@ -597,7 +625,7 @@
             
             <div class="portfolio-grid" id="portfolioGrid">
                 <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">🎨</div>
+                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,brand')"></div>
                     <div class="portfolio-content">
                         <h3>Brand Identity Design</h3>
                         <p>미니멀하고 모던한 브랜드 아이덴티티 디자인으로 브랜드의 핵심 가치를 표현했습니다.</p>
@@ -609,7 +637,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-image">💻</div>
+                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,web')"></div>
                     <div class="portfolio-content">
                         <h3>Responsive Web Design</h3>
                         <p>사용자 경험을 중심으로 한 반응형 웹사이트 디자인 및 개발 프로젝트입니다.</p>
@@ -621,7 +649,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-image">📖</div>
+                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,print')"></div>
                     <div class="portfolio-content">
                         <h3>Editorial Design</h3>
                         <p>타이포그래피와 레이아웃의 조화로 완성한 에디토리얼 디자인 작업입니다.</p>
@@ -633,7 +661,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">🏢</div>
+                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,corporate')"></div>
                     <div class="portfolio-content">
                         <h3>Corporate Identity</h3>
                         <p>기업의 철학과 비전을 담은 통합적인 기업 아이덴티티 시스템을 구축했습니다.</p>
@@ -669,10 +697,10 @@
                     
                     <div class="form-group">
                         <label>카테고리</label>
-                        <select id="projectCategory" style="width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #333; color: #fff; padding: 15px; font-size: 16px; border-radius: 5px;">
-                            <option value="branding" style="color: #333;">Branding</option>
-                            <option value="web" style="color: #333;">Web Design</option>
-                            <option value="print" style="color: #333;">Print</option>
+                        <select id="projectCategory">
+                            <option value="branding">Branding</option>
+                            <option value="web">Web Design</option>
+                            <option value="print">Print</option>
                         </select>
                     </div>
                     
@@ -735,10 +763,10 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav');
             if (window.scrollY > 100) {
-                nav.style.background = 'rgba(250, 250, 250, 0.95)';
+                nav.style.background = 'rgba(248, 250, 248, 0.95)';
                 nav.style.backdropFilter = 'blur(20px)';
             } else {
-                nav.style.background = 'rgba(250, 250, 250, 0.9)';
+                nav.style.background = 'rgba(248, 250, 248, 0.9)';
             }
         });
 
@@ -823,38 +851,40 @@
                 return;
             }
 
-            // 새 포트폴리오 아이템 생성
-            const newItem = createPortfolioItem(title, category, description, tags);
-            document.getElementById('portfolioGrid').appendChild(newItem);
+            // 이미지 미리보기 생성
+            const file = selectedFiles[0];
+            const reader = new FileReader();
             
-            // 폼 초기화
-            document.getElementById('uploadForm').reset();
-            selectedFiles = [];
-            uploadArea.innerHTML = `
-                <div class="upload-icon">📁</div>
-                <div class="upload-text">파일을 드래그하거나 클릭하여 업로드</div>
-                <div class="upload-subtext">PNG, JPG, PDF 파일 지원 (최대 10MB)</div>
-            `;
+            reader.onload = function(e) {
+                // 새 포트폴리오 아이템 생성
+                const newItem = createPortfolioItem(title, category, description, tags, e.target.result);
+                document.getElementById('portfolioGrid').appendChild(newItem);
+                
+                // 폼 초기화
+                document.getElementById('uploadForm').reset();
+                selectedFiles = [];
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">파일을 드래그하거나 클릭하여 업로드</div>
+                    <div class="upload-subtext">PNG, JPG, PDF 파일 지원 (최대 10MB)</div>
+                `;
 
-            alert('프로젝트가 성공적으로 추가되었습니다!');
+                alert('프로젝트가 성공적으로 추가되었습니다!');
+            };
+            
+            reader.readAsDataURL(file);
         });
 
-        function createPortfolioItem(title, category, description, tags) {
+        function createPortfolioItem(title, category, description, tags, imageUrl) {
             const item = document.createElement('div');
             item.className = 'portfolio-item';
             item.setAttribute('data-category', category);
-            
-            const categoryIcons = {
-                'branding': '🎨',
-                'web': '💻',
-                'print': '📖'
-            };
             
             const tagsArray = tags.split(',').map(tag => tag.trim()).filter(tag => tag);
             const tagsHTML = tagsArray.map(tag => `<span class="tag">${tag}</span>`).join('');
             
             item.innerHTML = `
-                <div class="portfolio-image">${categoryIcons[category] || '🎨'}</div>
+                <div class="portfolio-image" style="background-image: url('${imageUrl}')"></div>
                 <div class="portfolio-content">
                     <h3>${title}</h3>
                     <p>${description}</p>
