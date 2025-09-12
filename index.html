@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정하경 포트폴리오 - Web Designer</title>
+    <title>JEONG HAKYUNG PORTFOLIO - Web Designer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="images/png" href="https://github.com/hakyaung/Mypage_Portfolio/blob/main/image/logo.png?raw=true">
     <style>
         * {
             margin: 0;
@@ -115,7 +116,8 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(rgba(248, 250, 248, 0.7), rgba(248, 250, 248, 0.7)), 
+            background: /*linear-gradient(rgba(248, 250, 248, 0.7), rgba(248, 250, 248, 0.7)), */
+                        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
@@ -131,12 +133,14 @@
             font-weight: 300;
             line-height: 1.1;
             margin-bottom: 20px;
-            color: var(--deep-green);
+            /*color: var(--deep-green);*/
+            color: white;
         }
 
         .hero .subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--light-green);
+            /*color: var(--light-green);*/
+            color: white;
             margin-bottom: 40px;
             font-weight: 300;
         }
@@ -161,27 +165,33 @@
         }
 
         .btn-primary {
-            background: var(--medium-green);
+            /*background: var(--medium-green);*/
+            background: var(--pale-green);
             color: white;
-            border: 2px solid var(--medium-green);
+            border: 2px solid var(--pale-green);
         }
 
         .btn-primary:hover {
-            background: var(--deep-green);
+            /*background: var(--deep-green);*/
+            background: var(--menu-hover);
             border-color: var(--deep-green);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(58, 87, 67, 0.2);
+            box-shadow: 0 10px 20px rgba(245, 244, 244, 0.2);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--medium-green);
-            border: 2px solid var(--medium-green);
+            /*color: var(--medium-green);*/
+            color: white;
+            /*border: 2px solid var(--medium-green);*/
+            border: 2px solid white;
         }
 
         .btn-outline:hover {
-            background: var(--medium-green);
-            color: white;
+            /*background: var(--medium-green);*/
+            background: white;
+            /*color: white;*/
+            color: black;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(58, 87, 67, 0.2);
         }
@@ -680,6 +690,7 @@
     <nav class="nav">
         <div class="logo">
             <i class="fas fa-leaf"></i> JEONG HAKYUNG PORTFOLIO
+            <!--<img src="https://github.com/hakyaung/Mypage_Portfolio/blob/main/image/logo.png?raw=true" alt="JEONG HAKYUNG PORTFOLIO" width="50px" height="50px"> JEONG HAKYUNG PORTFOLIO-->
         </div>
         <div class="menu">
             <a href="#home">Home</a>
@@ -694,7 +705,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>WEB DESIGNER<br>& DEVELOPER</h1>
-            <p class="subtitle">자연과 기술의 조화를 추구하는 디자이너</p>
+            <p class="subtitle">자연과 기술의 조화를 추구하는 프로그래머</p>
             <div class="hero-buttons">
                 <a href="#portfolio" class="btn btn-primary">
                     <i class="fas fa-briefcase"></i> 포트폴리오 보기
