@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio — Creative Designer</title>
+    <title>정하경 포트폴리오 - Web Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --deep-green: #2c4c3c;
+            --medium-green: #3a5743;
+            --light-green: #5a755a;
+            --pale-green: #7a9d7a;
+            --background: #f8faf8;
+            --accent: #8a6d3b;
+            --text-dark: #2c3e2c;
+            --text-light: #6a806a;
         }
 
         html {
@@ -18,9 +30,9 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-weight: 300;
-            line-height: 1.4;
-            color: #2c3e2c;
-            background: #f8faf8;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background);
             overflow-x: hidden;
         }
 
@@ -28,7 +40,7 @@
         .cursor {
             width: 20px;
             height: 20px;
-            border: 2px solid #3a5743;
+            border: 2px solid var(--medium-green);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -42,20 +54,28 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 30px 50px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(248, 250, 248, 0.9);
+            background: rgba(248, 250, 248, 0.95);
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(58, 87, 67, 0.1);
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: 500;
-            color: #3a5743;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--medium-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 8px;
+            color: var(--accent);
         }
 
         .menu {
@@ -65,15 +85,26 @@
 
         .menu a {
             text-decoration: none;
-            color: #3a5743;
+            color: var(--medium-green);
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             position: relative;
             transition: all 0.3s ease;
         }
 
-        .menu a:hover {
-            opacity: 0.6;
+        .menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover:after {
+            width: 100%;
         }
 
         /* 히어로 섹션 */
@@ -84,7 +115,10 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #f8faf8 0%, #e8efe8 100%);
+            background: linear-gradient(rgba(248, 250, 248, 0.7), rgba(248, 250, 248, 0.7)), 
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .hero-content {
@@ -93,41 +127,110 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 200;
-            line-height: 0.9;
-            margin-bottom: 30px;
-            color: #3a5743;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--deep-green);
         }
 
         .hero .subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: #6a806a;
-            margin-bottom: 50px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--light-green);
+            margin-bottom: 40px;
             font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--medium-green);
+            color: white;
+            border: 2px solid var(--medium-green);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-green);
+            border-color: var(--deep-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 87, 67, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--medium-green);
+            border: 2px solid var(--medium-green);
+        }
+
+        .btn-outline:hover {
+            background: var(--medium-green);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 87, 67, 0.2);
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 50px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 14px;
-            color: #6a806a;
+            color: var(--light-green);
             animation: bounce 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scroll-indicator i {
+            font-size: 20px;
         }
 
         /* 섹션 기본 스타일 */
         .section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
             padding: 100px 50px;
             position: relative;
         }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            color: var(--deep-green);
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: var(--light-green);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
         }
@@ -139,130 +242,133 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 100px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(58, 87, 67, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
         .about-text h2 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 200;
-            line-height: 1.1;
-            margin-bottom: 40px;
-            color: #3a5743;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--deep-green);
         }
 
         .about-text p {
             font-size: 18px;
-            color: #5a755a;
-            margin-bottom: 30px;
-            max-width: 500px;
+            color: var(--light-green);
+            margin-bottom: 25px;
         }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .stat {
             text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(58, 87, 67, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 200;
-            color: #3a5743;
+            color: var(--medium-green);
+            margin-bottom: 10px;
         }
 
         .stat-label {
             font-size: 14px;
-            color: #6a806a;
+            color: var(--light-green);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         /* 포트폴리오 섹션 */
         .portfolio {
-            background: #f1f7f1;
-            padding: 150px 50px;
-        }
-
-        .portfolio-header {
-            text-align: center;
-            margin-bottom: 100px;
-        }
-
-        .portfolio-header h2 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 200;
-            margin-bottom: 30px;
-            color: #3a5743;
+            background: var(--background);
+            padding: 100px 50px;
         }
 
         .portfolio-filter {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-bottom: 80px;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
             background: none;
             border: none;
             font-size: 16px;
-            color: #6a806a;
+            color: var(--light-green);
             cursor: pointer;
-            padding: 10px 0;
+            padding: 10px 20px;
             position: relative;
             transition: all 0.3s ease;
+            border-radius: 30px;
         }
 
         .filter-btn.active,
         .filter-btn:hover {
-            color: #3a5743;
-        }
-
-        .filter-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: #3a5743;
+            color: white;
+            background: var(--medium-green);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 60px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .portfolio-item {
-            background: #fff;
-            border-radius: 0;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(58, 87, 67, 0.1);
+            box-shadow: 0 10px 30px rgba(58, 87, 67, 0.1);
         }
 
         .portfolio-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(58, 87, 67, 0.15);
+            box-shadow: 0 20px 40px rgba(58, 87, 67, 0.2);
         }
 
         .portfolio-image {
             width: 100%;
-            height: 300px;
+            height: 250px;
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -283,196 +389,200 @@
             opacity: 1;
         }
 
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.05);
-        }
-
         .portfolio-content {
-            padding: 40px;
+            padding: 25px;
         }
 
         .portfolio-content h3 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            color: #3a5743;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--deep-green);
         }
 
         .portfolio-content p {
-            color: #5a755a;
+            color: var(--light-green);
             font-size: 16px;
             line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         .portfolio-tags {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
             flex-wrap: wrap;
         }
 
         .tag {
             font-size: 12px;
-            color: #7a9d7a;
+            color: var(--pale-green);
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 4px 10px;
+            padding: 5px 12px;
             background: rgba(122, 157, 122, 0.1);
-            border-radius: 3px;
+            border-radius: 20px;
         }
 
-        /* 업로드 섹션 */
-        .upload {
-            background: #2c3e2c;
-            color: #f1f7f1;
+        /* 학습 자료 섹션 */
+        .learning {
+            background: #f1f7f1;
+            padding: 100px 50px;
         }
 
-        .upload-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .upload h2 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 200;
+        .learning-tabs {
+            display: flex;
+            gap: 20px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .upload-form {
-            margin-top: 60px;
-        }
-
-        .upload-area {
-            border: 2px dashed #5a755a;
-            border-radius: 10px;
-            padding: 60px 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
-
-        .upload-area:hover {
-            border-color: #7a9d7a;
-            background: rgba(122, 157, 122, 0.05);
-        }
-
-        .upload-area.dragover {
-            border-color: #f1f7f1;
-            background: rgba(122, 157, 122, 0.1);
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #5a755a;
-        }
-
-        .upload-text {
-            font-size: 18px;
-            color: #c8d6c8;
-            margin-bottom: 10px;
-        }
-
-        .upload-subtext {
-            font-size: 14px;
-            color: #5a755a;
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: #c8d6c8;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            background: rgba(241, 247, 241, 0.1);
-            border: 1px solid #5a755a;
-            color: #f1f7f1;
-            padding: 15px;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #7a9d7a;
-            background: rgba(241, 247, 241, 0.15);
-        }
-
-        .submit-btn {
-            background: #f1f7f1;
-            color: #2c3e2c;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            cursor: pointer;
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 1px solid var(--pale-green);
             border-radius: 30px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 400;
+            font-size: 16px;
+            color: var(--light-green);
         }
 
-        .submit-btn:hover {
-            background: #e8efe8;
-            transform: translateY(-2px);
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--medium-green);
+            color: white;
+            border-color: var(--medium-green);
         }
 
-        /* 푸터 */
-        .footer {
-            background: #f1f7f1;
-            padding: 100px 50px 50px;
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .learning-list {
+            list-style: none;
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .learning-list li {
+            margin-bottom: 15px;
+            break-inside: avoid;
+        }
+
+        .learning-list a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(58, 87, 67, 0.1);
+        }
+
+        .learning-list a:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(58, 87, 67, 0.15);
+            color: var(--medium-green);
+        }
+
+        .learning-list a i {
+            margin-right: 10px;
+            color: var(--medium-green);
+        }
+
+        /* 연락처 섹션 */
+        .contact {
+            background: var(--deep-green);
+            color: white;
+            padding: 100px 50px;
+        }
+
+        .contact-content {
             text-align: center;
-        }
-
-        .footer-content {
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .footer h3 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 30px;
-            color: #3a5743;
-        }
-
         .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-bottom: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .contact-item {
             text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--pale-green);
         }
 
         .contact-label {
-            font-size: 12px;
-            color: #7a9d7a;
+            font-size: 14px;
+            color: var(--pale-green);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 10px;
         }
 
         .contact-value {
-            font-size: 16px;
-            color: #3a5743;
+            font-size: 18px;
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--pale-green);
+            transform: translateY(-3px);
+        }
+
+        /* 푸터 */
+        .footer {
+            background: var(--deep-green);
+            padding: 50px 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer p {
+            font-size: 14px;
         }
 
         /* 애니메이션 */
@@ -500,42 +610,47 @@
         }
 
         /* 반응형 */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .learning-list {
+                columns: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav {
-                padding: 20px;
+                padding: 15px 20px;
             }
-
+            
             .menu {
                 display: none;
             }
-
+            
             .section {
                 padding: 80px 20px;
             }
-
-            .about-grid {
+            
+            .stats {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 20px;
             }
-
+            
             .portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-
-            .contact-info {
-                flex-direction: column;
                 gap: 30px;
             }
-
-            .portfolio-filter {
-                flex-wrap: wrap;
-                gap: 20px;
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -549,12 +664,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
+            background: var(--light-green);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+            background: var(--medium-green);
         }
     </style>
 </head>
@@ -563,47 +678,66 @@
 
     <!-- 네비게이션 -->
     <nav class="nav">
-        <div class="logo">PORTFOLIO</div>
+        <div class="logo">
+            <i class="fas fa-leaf"></i> JEONG HAKYUNG PORTFOLIO
+        </div>
         <div class="menu">
             <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#portfolio">Work</a>
-            <a href="#upload">Upload</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#learning">Learning</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- 히어로 섹션 -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>CREATIVE<br>PORTFOLIO</h1>
-            <p class="subtitle">정하경이란?</p>
+            <h1>WEB DESIGNER<br>& DEVELOPER</h1>
+            <p class="subtitle">자연과 기술의 조화를 추구하는 디자이너</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i> 포트폴리오 보기
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-paper-plane"></i> 연락하기
+                </a>
+            </div>
         </div>
         <div class="scroll-indicator">
-            ↓ Scroll to explore
+            <i class="fas fa-chevron-down"></i>
+            Scroll to explore
         </div>
     </section>
 
     <!-- 소개 섹션 -->
     <section id="about" class="section about">
         <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>디자인과 개발의 경계에서 창의적인 솔루션을 만들어갑니다</p>
+            </div>
             <div class="about-grid">
-                <div class="about-text">
-                    <h2>WEB</h2><br>DESIGNER</h2>
-                    <p>으아아아아ㅏ아아아아ㅏ아아아아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</p>
-                    <p>포트폴리오용 홈페이지 입니당</p>
+                <div class="about-image">
+                    <img src="https://github.com/hakyaung/Mypage_Portfolio/blob/main/profile.jpg?raw=true" alt="정하경 프로필">
                 </div>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">ZERO+</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">23</div>
-                        <div class="stat-label">Years</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">ZERO+</div>
-                        <div class="stat-label">Clients</div>
+                <div class="about-text">
+                    <h2>자연에서 영감을 받는<br>디자이너</h2>
+                    <p>웹 디자인과 개발에 passion을 가지고 있는 디자이너입니다. 사용자 중심의 디자인과 깔끔한 코드를 지향하며, 자연에서 영감을 받은 아름답고 기능적인 웹사이트를 만드는 것을 좋아합니다.</p>
+                    <p>각 프로젝트마다 자연과 조화를 이루는 스토리를 만들어내며, 클라이언트의 비전을 현실로 만들어 드립니다.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">23</div>
+                            <div class="stat-label">Age</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">2+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -611,63 +745,68 @@
     </section>
 
     <!-- 포트폴리오 섹션 -->
-    <section id="portfolio" class="portfolio">
+    <section id="portfolio" class="section portfolio">
         <div class="container">
-            <div class="portfolio-header">
-                <h2>SELECTED WORK</h2>
-                <div class="portfolio-filter">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="branding">C++</button>
-                    <button class="filter-btn" data-filter="web">Web Design</button>
-                    <button class="filter-btn" data-filter="print">UML</button>
-                </div>
+            <div class="section-title">
+                <h2>My Portfolio</h2>
+                <p>제가 작업한 다양한 프로젝트들을 소개합니다</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="cpp">C++</button>
+                <button class="filter-btn" data-filter="uml">UML</button>
             </div>
             
-            <div class="portfolio-grid" id="portfolioGrid">
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image" style="background-image: url('https://github.com/hakyaung/Mypage_Portfolio/blob/main/profile.jpg?raw=true')"></div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
                     <div class="portfolio-content">
-                        <h3>C++</h3>
-                        <p>C에 대해 모아봐!</p>
+                        <h3>네이버 모작 웹사이트</h3>
+                        <p>네이버 메인 페이지를 모방하여 제작한 반응형 웹사이트입니다.</p>
                         <div class="portfolio-tags">
-                            <span class="tag">Branding</span>
-                            <span class="tag">Logo</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="cpp">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                    <div class="portfolio-content">
+                        <h3>C++ 프로젝트</h3>
+                        <p>다양한 C++ 프로젝트와 알고리즘 구현을 진행했습니다.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Algorithm</span>
+                            <span class="tag">Data Structure</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="uml">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                    <div class="portfolio-content">
+                        <h3>UML 다이어그램</h3>
+                        <p>시스템 설계를 위한 다양한 UML 다이어그램 작성 경험이 있습니다.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">UML</span>
+                            <span class="tag">Design</span>
+                            <span class="tag">System</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,web')"></div>
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
                     <div class="portfolio-content">
-                        <h3>Web Design</h3>
-                        <p>AI와 함께 하는 Web Design</p>
+                        <h3>HTML/CSS/JS 학습 자료</h3>
+                        <p>웹 개발 기본기를 다지기 위한 다양한 학습 자료와 예제를 만들었습니다.</p>
                         <div class="portfolio-tags">
-                            <span class="tag">Web Design</span>
-                            <span class="tag">UX/UI</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="print">
-                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,print')"></div>
-                    <div class="portfolio-content">
-                        <h3>UML</h3>
-                        <p>교수님....</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Print</span>
-                            <span class="tag">Editorial</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image" style="background-image: url('https://source.unsplash.com/random/600x400/?nature,corporate')"></div>
-                    <div class="portfolio-content">
-                        <h3>제에에에목</h3>
-                        <p>피유유유유우ㅜ웅</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Corporate</span>
-                            <span class="tag">Identity</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
                         </div>
                     </div>
                 </div>
@@ -675,70 +814,130 @@
         </div>
     </section>
 
-    <!-- 업로드 섹션 -->
-    <section id="upload" class="section upload">
+    <!-- 학습 자료 섹션 -->
+    <section id="learning" class="section learning">
         <div class="container">
-            <div class="upload-content">
-                <h2>ADD NEW WORK</h2>
-                <p>새로운 작품을 포트폴리오에 추가해보세요</p>
+            <div class="section-title">
+                <h2>Learning Resources</h2>
+                <p>제가 학습하고 정리한 다양한 자료들을 공유합니다</p>
+            </div>
+            
+            <div class="learning-tabs">
+                <button class="tab-btn active" data-tab="html">HTML/CSS/JS</button>
+                <button class="tab-btn" data-tab="cpp">C++</button>
+                <button class="tab-btn" data-tab="python">Python</button>
+                <button class="tab-btn" data-tab="other">Other</button>
+            </div>
+            
+            <div class="tab-content active" id="html-content">
+                <ul class="learning-list">
+                    <li><a href="HCJbook/part1/1_2.html" target="_blank"><i class="fas fa-file-code"></i> 1-2 첫 번째 HTML 문서 만들기</a></li>
+                    <li><a href="HCJbook/part2/2_1.html" target="_blank"><i class="fas fa-file-code"></i> 2-1 HTML의 기본 구성 요소</a></li>
+                    <li><a href="HCJbook/part2/2_2.html" target="_blank"><i class="fas fa-file-code"></i> 2-2 HTML의 기본 구조</a></li>
+                    <li><a href="HCJbook/part2/2_3.html" target="_blank"><i class="fas fa-file-code"></i> 2-3 HTML의 특징 파악하기</a></li>
+                    <li><a href="HCJbook/part2/2_4.html" target="_blank"><i class="fas fa-file-code"></i> 2-4 마무리</a></li>
+                    <li><a href="HCJbook/part3/3_1.html" target="_blank"><i class="fas fa-file-code"></i> 3-1 텍스트 작성하기</a></li>
+                    <li><a href="HCJbook/part3/3_2.html" target="_blank"><i class="fas fa-file-code"></i> 3-2 그룹 짓기</a></li>
+                    <li><a href="HCJbook/part3/3_3.html" target="_blank"><i class="fas fa-file-code"></i> 3-3 목록 만들기</a></li>
+                    <li><a href="HCJbook/part3/3_4.html" target="_blank"><i class="fas fa-file-code"></i> 3-4 링크와 이미지 넣기</a></li>
+                    <li><a href="HCJbook/part3/3_5.html" target="_blank"><i class="fas fa-file-code"></i> 3-5 텍스트 강조하기</a></li>
+                    <li><a href="HCJbook/part3/3_6.html" target="_blank"><i class="fas fa-file-code"></i> 3-6 폼 구성하기</a></li>
+                    <li><a href="HCJbook/part3/3_7.html" target="_blank"><i class="fas fa-file-code"></i> 3-7 표 만들기</a></li>
+                    <li><a href="HCJbook/part3/3_8.html" target="_blank"><i class="fas fa-file-code"></i> 3-8 멀티미디어 설정하기</a></li>
+                    <li><a href="HCJbook/part3/3_9.html" target="_blank"><i class="fas fa-file-code"></i> 3-9 웹 페이지 구조를 설계하는 시맨틱 태그</a></li>
+                    <li><a href="HCJbook/part3/3_10.html" target="_blank"><i class="fas fa-file-code"></i> 3-10 태그 종류에 상관없이 사용하는 글로벌 속성</a></li>
+                    <li><a href="HCJbook/part3/3_11.html" target="_blank"><i class="fas fa-file-code"></i> 3-11 마무리</a></li>
+                    <li><a href="HCJbook/part4/4_1.html" target="_blank"><i class="fas fa-file-code"></i> 4-1 CSS 문법 살펴보기</a></li>
+                    <li><a href="HCJbook/part4/4_2.html" target="_blank"><i class="fas fa-file-code"></i> 4-2 CSS 적용하기</a></li>
+                    <li><a href="HCJbook/part4/4_3.html" target="_blank"><i class="fas fa-file-code"></i> 4-3 마무리</a></li>
+                    <li><a href="HCJbook/part5/5_1.html" target="_blank"><i class="fas fa-file-code"></i> 5-1 기본 선택자 사용하기</a></li>
+                    <li><a href="HCJbook/part5/5_2.html" target="_blank"><i class="fas fa-file-code"></i> 5-2 조합 선택자 사용하기</a></li>
+                    <li><a href="HCJbook/part5/5_3.html" target="_blank"><i class="fas fa-file-code"></i> 5-3 가상 요소 선택자 사용하기</a></li>
+                    <li><a href="HCJbook/part5/5_4.html" target="_blank"><i class="fas fa-file-code"></i> 5-4 가상 클래스 선택자 사용하기</a></li>
+                    <li><a href="HCJbook/part5/5_5.html" target="_blank"><i class="fas fa-file-code"></i> 5-5 다양한 선택자 조합하기</a></li>
+                    <li><a href="HCJbook/part5/5_6.html" target="_blank"><i class="fas fa-file-code"></i> 5-6 마무리</a></li>
+                    <li><a href="HCJbook/part6/6_1.html" target="_blank"><i class="fas fa-file-code"></i> 6-1 CSS의 특징 살펴보기</a></li>
+                    <li><a href="HCJbook/part6/6_2.html" target="_blank"><i class="fas fa-file-code"></i> 6-2 텍스트 속성으로 텍스트 꾸미기</a></li>
+                    <li><a href="HCJbook/part6/6_3.html" target="_blank"><i class="fas fa-file-code"></i> 6-3 박스 모델을 구성하는 속성 다루기</a></li>
+                    <li><a href="HCJbook/part6/6_4.html" target="_blank"><i class="fas fa-file-code"></i> 6-4 배경 속성으로 요소의 배경 설정하기</a></li>
+                    <li><a href="HCJbook/part6/6_5.html" target="_blank"><i class="fas fa-file-code"></i> 6-5 위치 속성으로 HTML 요소 배치하기</a></li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="cpp-content">
+                <ul class="learning-list">
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> C++ 기초 문법</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> 객체지향 프로그래밍</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> 자료구조와 알고리즘</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> STL 활용하기</a></li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="python-content">
+                <ul class="learning-list">
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> Python 기초</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> 데이터 분석</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-file-code"></i> 웹 개발</a></li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="other-content">
+                <ul class="learning-list">
+                    <li><a href="IMITATION_naver.html" target="_blank"><i class="fas fa-desktop"></i> NAVER 웹사이트 모작</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-database"></i> 데이터베이스</a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-network-wired"></i> 네트워크</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 섹션 -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>프로젝트 문의나 협업 제안은 언제든지 환영입니다</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">hk100456@naver.com</div>
+                </div>
                 
-                <form class="upload-form" id="uploadForm">
-                    <div class="upload-area" id="uploadArea">
-                        <div class="upload-icon">📁</div>
-                        <div class="upload-text">파일을 드래그하거나 클릭하여 업로드</div>
-                        <div class="upload-subtext">PNG, JPG, PDF 파일 지원 (최대 10MB)</div>
-                        <input type="file" id="fileInput" style="display: none;" accept=".png,.jpg,.jpeg,.pdf" multiple>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>프로젝트 제목</label>
-                        <input type="text" id="projectTitle" required>
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">+82 10 3012 4770</div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>카테고리</label>
-                        <select id="projectCategory">
-                            <option value="branding">Branding</option>
-                            <option value="web">Web Design</option>
-                            <option value="print">Print</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>프로젝트 설명</label>
-                        <textarea id="projectDescription" rows="4"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>태그 (쉼표로 구분)</label>
-                        <input type="text" id="projectTags" placeholder="예: Design, Creative, Modern">
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">프로젝트 추가</button>
-                </form>
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Cheonan, Korea</div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </section>
 
     <!-- 푸터 -->
     <footer class="footer">
-        <div class="footer-content">
-            <h3>Let's work together</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">hk100456@naver.com</div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label">Phone</div>
-                    <div class="contact-value">+82 10 3012 4770</div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-label">Location</div>
-                    <div class="contact-value">cheonan, Korea</div>
-                </div>
-            </div>
-            <p style="color: #7a9d7a; font-size: 14px;">&copy; 2025 Portfolio. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2023 정하경 포트폴리오. All rights reserved.</p>
         </div>
     </footer>
 
@@ -752,7 +951,7 @@
             mouseY = e.clientY;
         });
 
-        function updateCursor() {2
+        function updateCursor() {
             cursor.style.left = mouseX - 10 + 'px';
             cursor.style.top = mouseY - 10 + 'px';
             requestAnimationFrame(updateCursor);
@@ -763,10 +962,11 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav');
             if (window.scrollY > 100) {
-                nav.style.background = 'rgba(248, 250, 248, 0.95)';
-                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.background = 'rgba(248, 250, 248, 0.98)';
+                nav.style.padding = '15px 50px';
             } else {
-                nav.style.background = 'rgba(248, 250, 248, 0.9)';
+                nav.style.background = 'rgba(248, 250, 248, 0.95)';
+                nav.style.padding = '20px 50px';
             }
         });
 
@@ -786,114 +986,42 @@
                 portfolioItems.forEach(item => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
                         item.style.display = 'block';
-                        item.style.animation = 'fadeInUp 0.5s ease-out';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
                     } else {
-                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
                     }
                 });
             });
         });
 
-        // 파일 업로드 처리
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        let selectedFiles = [];
+        // 학습 자료 탭
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-        uploadArea.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-
-        fileInput.addEventListener('change', () => {
-            handleFiles(fileInput.files);
-        });
-
-        function handleFiles(files) {
-            selectedFiles = Array.from(files);
-            updateUploadArea();
-        }
-
-        function updateUploadArea() {
-            if (selectedFiles.length > 0) {
-                uploadArea.innerHTML = `
-                    <div class="upload-icon">✅</div>
-                    <div class="upload-text">${selectedFiles.length}개 파일 선택됨</div>
-                    <div class="upload-subtext">클릭하여 다른 파일 선택</div>
-                `;
-            }
-        }
-
-        // 폼 제출 처리
-        document.getElementById('uploadForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const title = document.getElementById('projectTitle').value;
-            const category = document.getElementById('projectCategory').value;
-            const description = document.getElementById('projectDescription').value;
-            const tags = document.getElementById('projectTags').value;
-
-            if (!title || selectedFiles.length === 0) {
-                alert('제목과 파일을 모두 입력해주세요.');
-                return;
-            }
-
-            // 이미지 미리보기 생성
-            const file = selectedFiles[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                // 새 포트폴리오 아이템 생성
-                const newItem = createPortfolioItem(title, category, description, tags, e.target.result);
-                document.getElementById('portfolioGrid').appendChild(newItem);
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
                 
-                // 폼 초기화
-                document.getElementById('uploadForm').reset();
-                selectedFiles = [];
-                uploadArea.innerHTML = `
-                    <div class="upload-icon">📁</div>
-                    <div class="upload-text">파일을 드래그하거나 클릭하여 업로드</div>
-                    <div class="upload-subtext">PNG, JPG, PDF 파일 지원 (최대 10MB)</div>
-                `;
-
-                alert('프로젝트가 성공적으로 추가되었습니다!');
-            };
-            
-            reader.readAsDataURL(file);
+                // 활성 탭 변경
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 활성 콘텐츠 변경
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-content`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
         });
-
-        function createPortfolioItem(title, category, description, tags, imageUrl) {
-            const item = document.createElement('div');
-            item.className = 'portfolio-item';
-            item.setAttribute('data-category', category);
-            
-            const tagsArray = tags.split(',').map(tag => tag.trim()).filter(tag => tag);
-            const tagsHTML = tagsArray.map(tag => `<span class="tag">${tag}</span>`).join('');
-            
-            item.innerHTML = `
-                <div class="portfolio-image" style="background-image: url('${imageUrl}')"></div>
-                <div class="portfolio-content">
-                    <h3>${title}</h3>
-                    <p>${description}</p>
-                    <div class="portfolio-tags">${tagsHTML}</div>
-                </div>
-            `;
-            
-            return item;
-        }
 
         // 부드러운 스크롤
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
