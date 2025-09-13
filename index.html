@@ -413,118 +413,189 @@
         }
 
         /* 음악 섹션 */
-        .music {
-            background: #f1f7f1;
-            padding: 100px 50px;
-        }
+    .music-player {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(58, 87, 67, 0.15);
+        margin-bottom: 40px;
+    }
 
-        .music-player {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(58, 87, 67, 0.15);
-            margin-bottom: 40px;
-        }
+    .current-playing {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-        .current-playing {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .current-playing h3 {
+        color: var(--deep-green);
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
 
-        .current-playing h3 {
-            color: var(--deep-green);
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+    .current-playing p {
+        color: var(--light-green);
+        font-size: 16px;
+    }
 
-        .current-playing p {
-            color: var(--light-green);
-        }
+    .main-video-container {
+        position: relative;
+        width: 100%;
+        height: 400px; /* 높이를 400px로 증가 */
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
 
-        .music-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
+    .main-video-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
 
-        .music-tab-btn {
-            padding: 12px 25px;
-            background: white;
-            border: 1px solid var(--pale-green);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+    /* 슬라이더 스타일 */
+    .playlist-slider {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .slider-btn {
+        background: var(--medium-green);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+
+    .slider-btn:hover {
+        background: var(--deep-green);
+        transform: scale(1.1);
+    }
+
+    .playlist-container {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 10px 0;
+        flex: 1;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .playlist-container::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
+    .video-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(58, 87, 67, 0.1);
+        min-width: 300px; /* 최소 너비 설정 */
+        flex-shrink: 0; /* 축소 방지 */
+    }
+
+    .video-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(58, 87, 67, 0.2);
+    }
+
+    .video-thumbnail {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .video-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .video-item:hover .video-thumbnail img {
+        transform: scale(1.05);
+    }
+
+    .play-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .video-item:hover .play-overlay {
+        opacity: 1;
+    }
+
+    .video-info {
+        padding: 20px;
+    }
+
+    .video-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--deep-green);
+        margin-bottom: 8px;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .video-description {
+        font-size: 14px;
+        color: var(--light-green);
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+        .main-video-container {
+            height: 250px; /* 모바일에서 높이 조정 */
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
             font-size: 16px;
-            color: var(--light-green);
         }
-
-        .music-tab-btn.active,
-        .music-tab-btn:hover {
-            background: var(--medium-green);
-            color: white;
-            border-color: var(--medium-green);
-        }
-
-        .music-content {
-            display: none;
-        }
-
-        .music-content.active {
-            display: block;
-        }
-
-        .playlist-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
+        
         .video-item {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(58, 87, 67, 0.1);
+            min-width: 280px;
         }
-
-        .video-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(58, 87, 67, 0.2);
+        
+        .playlist-slider {
+            gap: 10px;
         }
-
-        .video-thumbnail {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .video-thumbnail iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-title {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--deep-green);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .video-description {
-            font-size: 14px;
-            color: var(--light-green);
-            line-height: 1.5;
-        }
+    }
 
         /* 학습 자료 섹션 */
         .learning {
@@ -935,10 +1006,10 @@
             <div class="music-player">
                 <div class="current-playing">
                     <h3>🎵 현재 재생중</h3>
-                    <p>Lo-fi Hip Hop - Study & Relax</p>
+                    <p id="current-title">Lo-fi Hip Hop - Study & Relax</p>
                 </div>
-                <div class="video-thumbnail">
-                    <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&mute=0" 
+                <div class="main-video-container">
+                    <iframe id="main-player" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&mute=0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                     </iframe>
@@ -955,177 +1026,197 @@
             
             <!-- Lo-fi 플레이리스트 -->
             <div class="music-content active" id="lofi-content">
-                <div class="playlist-grid">
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                <div class="playlist-slider">
+                    <button class="slider-btn prev-btn" onclick="slidePlaylist('lofi', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="playlist-container" id="lofi-playlist">
+                        <div class="video-item" onclick="changeMainVideo('jfKfPfyJRdk', 'lofi hip hop radio 📚 - beats to relax/study to')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/jfKfPfyJRdk/maxresdefault.jpg" alt="Lo-fi Hip Hop">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">lofi hip hop radio 📚 - beats to relax/study to</div>
+                                <div class="video-description">Lofi Girl의 24시간 스트리밍 방송</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">lofi hip hop radio 📚 - beats to relax/study to</div>
-                            <div class="video-description">Lofi Girl의 24시간 스트리밍 방송</div>
+                        
+                        <div class="video-item" onclick="changeMainVideo('5qap5aO4i9A', 'lofi hip hop radio 🌙 - beats to sleep/chill to')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/5qap5aO4i9A/maxresdefault.jpg" alt="Lo-fi Chill">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">lofi hip hop radio 🌙 - beats to sleep/chill to</div>
+                                <div class="video-description">밤에 듣기 좋은 lo-fi 음악</div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-title">lofi hip hop radio 🌙 - beats to sleep/chill to</div>
-                            <div class="video-description">밤에 듣기 좋은 lo-fi 음악</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/DWcJFNfaw9c" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                        <div class="video-item" onclick="changeMainVideo('DWcJFNfaw9c', 'Chill Lo-fi Hip Hop Beats')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/DWcJFNfaw9c/maxresdefault.jpg" alt="Chill Lo-fi">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Chill Lo-fi Hip Hop Beats</div>
+                                <div class="video-description">집중할 때 듣기 좋은 차분한 비트</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Chill Lo-fi Hip Hop Beats</div>
-                            <div class="video-description">집중할 때 듣기 좋은 차분한 비트</div>
+
+                        <!-- 더 많은 비디오를 추가할 수 있습니다 -->
+                        <div class="video-item" onclick="changeMainVideo('4xDzrJKXOOY', 'Study Music - Lofi Hip Hop Mix')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/4xDzrJKXOOY/maxresdefault.jpg" alt="Study Music">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Study Music - Lofi Hip Hop Mix</div>
+                                <div class="video-description">공부용 로파이 믹스</div>
+                            </div>
                         </div>
                     </div>
+                    <button class="slider-btn next-btn" onclick="slidePlaylist('lofi', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
             <!-- Classical 플레이리스트 -->
             <div class="music-content" id="classical-content">
-                <div class="playlist-grid">
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/HAUTA6n0pE8" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                <div class="playlist-slider">
+                    <button class="slider-btn prev-btn" onclick="slidePlaylist('classical', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="playlist-container" id="classical-playlist">
+                        <div class="video-item" onclick="changeMainVideo('HAUTA6n0pE8', 'Best Classical Music for Studying')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/HAUTA6n0pE8/maxresdefault.jpg" alt="Classical Study">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Best Classical Music for Studying</div>
+                                <div class="video-description">공부할 때 듣기 좋은 클래식 음악</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Best Classical Music for Studying</div>
-                            <div class="video-description">공부할 때 듣기 좋은 클래식 음악</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/C7QL95kCNIw" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                        <div class="video-item" onclick="changeMainVideo('C7QL95kCNIw', 'Peaceful Piano - Classical Music')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/C7QL95kCNIw/maxresdefault.jpg" alt="Peaceful Piano">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Peaceful Piano - Classical Music</div>
+                                <div class="video-description">평화로운 피아노 클래식</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Peaceful Piano - Classical Music</div>
-                            <div class="video-description">평화로운 피아노 클래식</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/n61ULEU7CO0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-title">Mozart - Classical Music for Brain Power</div>
-                            <div class="video-description">두뇌 활동에 도움이 되는 모차르트</div>
+                        <div class="video-item" onclick="changeMainVideo('n61ULEU7CO0', 'Mozart - Classical Music for Brain Power')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/n61ULEU7CO0/maxresdefault.jpg" alt="Mozart">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Mozart - Classical Music for Brain Power</div>
+                                <div class="video-description">두뇌 활동에 도움이 되는 모차르트</div>
+                            </div>
                         </div>
                     </div>
+                    <button class="slider-btn next-btn" onclick="slidePlaylist('classical', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
             <!-- Ambient 플레이리스트 -->
             <div class="music-content" id="ambient-content">
-                <div class="playlist-grid">
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/1fueZCTYkpA" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                <div class="playlist-slider">
+                    <button class="slider-btn prev-btn" onclick="slidePlaylist('ambient', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="playlist-container" id="ambient-playlist">
+                        <div class="video-item" onclick="changeMainVideo('1fueZCTYkpA', 'Ambient Music for Deep Focus')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/1fueZCTYkpA/maxresdefault.jpg" alt="Ambient Focus">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Ambient Music for Deep Focus</div>
+                                <div class="video-description">깊은 집중을 위한 앰비언트 음악</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Ambient Music for Deep Focus</div>
-                            <div class="video-description">깊은 집중을 위한 앰비언트 음악</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/2WjgKzHW8bY" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                        <div class="video-item" onclick="changeMainVideo('2WjgKzHW8bY', 'Nature Sounds - Forest Ambience')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/2WjgKzHW8bY/maxresdefault.jpg" alt="Forest Ambience">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Nature Sounds - Forest Ambience</div>
+                                <div class="video-description">자연의 소리와 함께하는 숲속 분위기</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Nature Sounds - Forest Ambience</div>
-                            <div class="video-description">자연의 소리와 함께하는 숲속 분위기</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/N7lZjNLgGvI" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-title">Rain Sounds for Studying</div>
-                            <div class="video-description">공부할 때 듣기 좋은 빗소리</div>
+                        <div class="video-item" onclick="changeMainVideo('N7lZjNLgGvI', 'Rain Sounds for Studying')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/N7lZjNLgGvI/maxresdefault.jpg" alt="Rain Sounds">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Rain Sounds for Studying</div>
+                                <div class="video-description">공부할 때 듣기 좋은 빗소리</div>
+                            </div>
                         </div>
                     </div>
+                    <button class="slider-btn next-btn" onclick="slidePlaylist('ambient', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
             <!-- Jazz 플레이리스트 -->
             <div class="music-content" id="jazz-content">
-                <div class="playlist-grid">
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/neV3EPgvZ3g" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                <div class="playlist-slider">
+                    <button class="slider-btn prev-btn" onclick="slidePlaylist('jazz', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="playlist-container" id="jazz-playlist">
+                        <div class="video-item" onclick="changeMainVideo('neV3EPgvZ3g', 'Smooth Jazz - Coffee Shop Music')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/neV3EPgvZ3g/maxresdefault.jpg" alt="Smooth Jazz">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Smooth Jazz - Coffee Shop Music</div>
+                                <div class="video-description">카페에서 듣기 좋은 스무스 재즈</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Smooth Jazz - Coffee Shop Music</div>
-                            <div class="video-description">카페에서 듣기 좋은 스무스 재즈</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/Dx5qFachd3A" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
+                        <div class="video-item" onclick="changeMainVideo('Dx5qFachd3A', 'Relaxing Jazz Piano Music')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/Dx5qFachd3A/maxresdefault.jpg" alt="Jazz Piano">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Relaxing Jazz Piano Music</div>
+                                <div class="video-description">편안한 재즈 피아노 음악</div>
+                            </div>
                         </div>
-                        <div class="video-info">
-                            <div class="video-title">Relaxing Jazz Piano Music</div>
-                            <div class="video-description">편안한 재즈 피아노 음악</div>
-                        </div>
-                    </div>
 
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <iframe src="https://www.youtube.com/embed/2vjPBrBU-TM" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-title">Background Jazz Music</div>
-                            <div class="video-description">배경음악으로 좋은 재즈</div>
+                        <div class="video-item" onclick="changeMainVideo('2vjPBrBU-TM', 'Background Jazz Music')">
+                            <div class="video-thumbnail">
+                                <img src="https://img.youtube.com/vi/2vjPBrBU-TM/maxresdefault.jpg" alt="Background Jazz">
+                                <div class="play-overlay"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">Background Jazz Music</div>
+                                <div class="video-description">배경음악으로 좋은 재즈</div>
+                            </div>
                         </div>
                     </div>
+                    <button class="slider-btn next-btn" onclick="slidePlaylist('jazz', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1357,6 +1448,76 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // 플레이리스트 슬라이더 위치 추적
+        const sliderPositions = {
+            lofi: 0,
+            classical: 0,
+            ambient: 0,
+            jazz: 0
+        };
+
+        // 메인 비디오 변경 함수
+        function changeMainVideo(videoId, title) {
+            const mainPlayer = document.getElementById('main-player');
+            const currentTitle = document.getElementById('current-title');
+            
+            mainPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+            currentTitle.textContent = title;
+        }
+
+        // 플레이리스트 슬라이드 함수
+        function slidePlaylist(category, direction) {
+            const container = document.getElementById(`${category}-playlist`);
+            const itemWidth = 320; // 아이템 너비 + 간격
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            
+            sliderPositions[category] += direction * itemWidth;
+            
+            // 범위 제한
+            if (sliderPositions[category] < 0) {
+                sliderPositions[category] = 0;
+            } else if (sliderPositions[category] > maxScroll) {
+                sliderPositions[category] = maxScroll;
+            }
+            
+            container.scrollTo({
+                left: sliderPositions[category],
+                behavior: 'smooth'
+            });
+        }
+
+        // 터치/마우스 드래그로 스크롤 지원
+        document.querySelectorAll('.playlist-container').forEach(container => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+                container.style.cursor = 'grabbing';
+            });
+
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+                container.style.cursor = 'grab';
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+                container.style.cursor = 'grab';
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 2;
+                container.scrollLeft = scrollLeft - walk;
             });
         });
     </script>
