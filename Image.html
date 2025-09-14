@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery - JEONG HAKYUNG PORTFOLIO</title>
+    <link rel="icon" type="images/png" href="https://github.com/hakyaung/Mypage_Portfolio/blob/main/image/logo.png?raw=true">
+    <link rel="stylesheet" href="Image_style.css">
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="nav">
+        <a href="index.html" class="logo">
+            <i class="fas fa-leaf"></i> JEONG HAKYUNG PORTFOLIO
+        </a>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="index.html#music">Music</a>
+            <a href="index.html#learning">Learning</a>
+            <a href="Image.html" class="active">Image</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>IMAGE<br>GALLERY</h1>
+            <p class="subtitle">자연과 일상에서 담아낸 순간들</p>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> 홈으로 돌아가기
+            </a>
+        </div>
+    </section>
+
+    <!-- 이미지 갤러리 섹션 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Gallery</h2>
+                <p>사진을 통해 표현하는 나만의 시각과 감성</p>
+            </div>
+            
+            <div class="image-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
+            
+            <div class="image-grid">
+                <div class="image-item" data-category="nature">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Forest Path" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">숲속의 길</div>
+                        <div class="image-description">햇살이 스며드는 조용한 숲길</div>
+                        <div class="image-tags">
+                            <span class="tag">Nature</span>
+                            <span class="tag">Forest</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="nature">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mountain Lake" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">고요한 호수</div>
+                        <div class="image-description">산 속 깊은 곳의 평온한 호수</div>
+                        <div class="image-tags">
+                            <span class="tag">Nature</span>
+                            <span class="tag">Lake</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="architecture">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Architecture" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">현대 건축</div>
+                        <div class="image-description">깔끔한 선과 면의 조화</div>
+                        <div class="image-tags">
+                            <span class="tag">Architecture</span>
+                            <span class="tag">Modern</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="portrait">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portrait" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">인물 사진</div>
+                        <div class="image-description">자연스러운 순간의 포착</div>
+                        <div class="image-tags">
+                            <span class="tag">Portrait</span>
+                            <span class="tag">Natural</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="design">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Design" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">웹 디자인</div>
+                        <div class="image-description">사용자 경험을 고려한 디자인</div>
+                        <div class="image-tags">
+                            <span class="tag">Design</span>
+                            <span class="tag">Web</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="nature">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sunrise" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">새벽 풍경</div>
+                        <div class="image-description">하루의 시작을 알리는 햇살</div>
+                        <div class="image-tags">
+                            <span class="tag">Nature</span>
+                            <span class="tag">Sunrise</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="architecture">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="City Architecture" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">도시의 스카이라인</div>
+                        <div class="image-description">현대 도시의 웅장한 모습</div>
+                        <div class="image-tags">
+                            <span class="tag">Architecture</span>
+                            <span class="tag">City</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="design">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">코딩 환경</div>
+                        <div class="image-description">개발자의 작업 공간</div>
+                        <div class="image-tags">
+                            <span class="tag">Design</span>
+                            <span class="tag">Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-item" data-category="nature">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Flower" loading="lazy">
+                        <div class="image-overlay">
+                            <i class="fas fa-search-plus overlay-icon"></i>
+                            <div class="overlay-text">View Details</div>
+                        </div>
+                    </div>
+                    <div class="image-info">
+                        <div class="image-title">꽃의 아름다움</div>
+                        <div class="image-description">자연이 선사하는 색채의 향연</div>
+                        <div class="image-tags">
+                            <span class="tag">Nature</span>
+                            <span class="tag">Flower</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 모달 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img class="modal-image" id="modalImage">
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 정하경 포트폴리오. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 스크롤 애니메이션
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(248, 250, 248, 0.98)';
+                nav.style.padding = '15px 50px';
+            } else {
+                nav.style.background = 'rgba(248, 250, 248, 0.95)';
+                nav.style.padding = '20px 50px';
+            }
+        });
+
+        // 이미지 필터링
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const imageItems = document.querySelectorAll('.image-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 활성 버튼 변경
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // 아이템 필터링
+                imageItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0) scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px) scale(0.9)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // 모달 기능
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close');
+
+        // 이미지 클릭 시 모달 열기
+        document.querySelectorAll('.image-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 모달 닫기
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+
+        // 모달 외부 클릭 시 닫기
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        // 이미지 레이지 로딩
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -50,6 +50,7 @@
             color: var(--medium-green);
             display: flex;
             align-items: center;
+            text-decoration: none;
         }
 
         .logo i {
@@ -83,6 +84,14 @@
         }
 
         .menu a:hover:after {
+            width: 100%;
+        }
+
+        .menu a.active {
+            color: var(--accent);
+        }
+
+        .menu a.active:after {
             width: 100%;
         }
 
@@ -406,7 +415,7 @@
         /* 음악 섹션 */
 /* ... 기존 스타일 유지 ... */
 
-/* 음악 섹션 (test.html에서 가져온 개선된 스타일) */
+/* 음악 섹션 */
 .music-player {
     background: white;
     border-radius: 20px;
