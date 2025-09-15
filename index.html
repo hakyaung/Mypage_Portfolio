@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JEONG HAKYUNG PORTFOLIO - Web Designer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="images/png" href="https://github.com/hakyaung/Mypage_Portfolio/blob/main/image/logo.png?raw=true">
@@ -11,11 +12,15 @@
 </head>
 <body>
     <!-- 네비게이션 -->
-    <nav class="nav">
+<nav class="nav">
         <a href="index.html" class="logo">
             <i class="fas fa-leaf"></i> JEONG HAKYUNG PORTFOLIO
         </a>
-        <div class="menu">
+        <!-- 모바일 메뉴 버튼 추가 -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="menu" id="mainMenu">
             <a href="index.html" class="active">Home</a>
             <a href="index.html#about">About</a>
             <a href="index.html#portfolio">Portfolio</a>
@@ -25,6 +30,7 @@
             <a href="index.html#contact">Contact</a>
         </div>
     </nav>
+
 
     <!-- 히어로 섹션 -->
     <section id="home" class="hero">
@@ -564,6 +570,40 @@
                         setTimeout(() => {
                             item.style.display = 'none';
                         }, 300);
+                    }
+                });
+            });
+        });
+        
+        // 모바일 메뉴 토글 기능 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainMenu = document.getElementById('mainMenu');
+            
+            if (mobileMenuBtn && mainMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainMenu.classList.toggle('active');
+                    // 아이콘 변경 (햄버거 ↔ X)
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // 모바일에서 메뉴 항목 클릭 시 메뉴 자동 닫힘
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mainMenu.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
                     }
                 });
             });

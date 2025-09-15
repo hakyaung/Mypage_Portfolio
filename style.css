@@ -95,6 +95,129 @@
             width: 100%;
         }
 
+        @media (max-width: 768px) {
+    /* 모바일 메뉴 버튼 표시 */
+    .mobile-menu-btn {
+        display: block;
+        z-index: 1001;
+    }
+    
+    /* 기본 메뉴 숨기기 */
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(248, 250, 248, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        padding: 60px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    /* 활성화된 메뉴 */
+    .menu.active {
+        right: 0;
+    }
+    
+    /* 모바일 메뉴 아이템 스타일 */
+    .menu a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        border-bottom: 1px solid rgba(58, 87, 67, 0.1);
+    }
+    
+    /* 음악 섹션 모바일 대응 */
+    .music-player {
+        padding: 20px;
+    }
+    
+    .main-video-container {
+        height: 200px;
+    }
+    
+    .playlist-slider {
+        gap: 10px;
+    }
+    
+    .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .video-item {
+        min-width: 220px;
+    }
+    
+    /* 플레이리스트 컨테이너 스크롤바 숨기기 */
+    .playlist-container {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    
+    .playlist-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+    
+    /* 지그재그 효과 제거 - 모바일에서는 혼란스러울 수 있음 */
+    .video-item:nth-child(even),
+    .video-item:nth-child(odd) {
+        transform: none;
+    }
+    
+    .video-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* 터치 디바이스에서 호버 효과 최소화 */
+    @media (hover: none) {
+        .video-item:hover {
+            transform: none;
+        }
+        
+        .play-overlay {
+            opacity: 0.7; /* 터치 기기에서는 항상 약간 표시 */
+        }
+    }
+}
+
+/* 매우 작은 기기 대응 */
+@media (max-width: 480px) {
+    .nav {
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    .section {
+        padding: 60px 20px;
+    }
+    
+    .video-item {
+        min-width: 200px;
+    }
+    
+    .music-tabs {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .music-tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
         /* 히어로 섹션 */
         .hero {
             height: 100vh;
