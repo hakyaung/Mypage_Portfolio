@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정하경 - AI소프트웨어학과</title>
+    <style>
+      /* 기존 CSS 코드는 그대로 유지 */
+      /* ... (기존 CSS 코드) ... */
+      
+      /* PDF 뷰어 스타일 개선 */
+      .pdf-viewer {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #f5f5f5;
+      }
+      
+      .pdf-placeholder {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a3a;
+        color: #a0a0ff;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      .pdf-placeholder .pdf-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+      
+      .pdf-placeholder a {
+        color: #5a46ff;
+        text-decoration: none;
+        margin-top: 10px;
+        display: inline-block;
+        padding: 8px 15px;
+        border: 1px solid #5a46ff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+      
+      .pdf-placeholder a:hover {
+        background: rgba(90, 70, 255, 0.2);
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 기존 HTML 코드는 그대로 유지 -->
+    <!-- ... (기존 HTML 코드) ... -->
+    
+    <!-- 새로운 iframe 섹션 -->
+    <section class="iframe-section" id="links">
+      <div class="iframe-container">
+        <div class="section-header">
+          <h2 class="section-title">기반이 된 자료들</h2>
+          <p class="section-subtitle">여러가지 형태의 실제 자료</p>
+        </div>
+
+        <div class="iframe-grid">
+          <div class="iframe-item">
+            <div class="iframe-title">
+              <h4>우주선 스케치</h4>
+            </div>
+            <div class="iframe-content" style="background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/sapceshipmymymy.png?raw=true'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+            </div>
+          </div>
+
+          <div class="iframe-item">
+            <div class="iframe-title">
+              <h4>냉동인간에 대한 생각 pdf</h4>
+            </div>
+            <div class="iframe-content">
+              <!-- PDF를 직접 표시할 수 없는 경우 대체 콘텐츠 표시 -->
+              <div class="pdf-placeholder">
+                <div class="pdf-icon">📄</div>
+                <p>PDF 뷰어를 사용할 수 없습니다.</p>
+                <p>아래 링크를 통해 PDF를 다운로드하세요.</p>
+                <a href="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/%EC%98%81%EC%96%B4%20%EA%B8%B0%EB%A7%90%20%EB%B0%9C%ED%91%9C(%EC%98%81%EC%96%B4).pdf" target="_blank">PDF 다운로드</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="iframe-item">
+            <div class="iframe-title">
+              <h4>우주 과학 뉴스</h4>
+            </div>
+            <div class="iframe-content">
+              <iframe src="https://www.space.com/news" 
+                      title="우주 과학 뉴스"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기존 HTML 코드는 그대로 유지 -->
+    <!-- ... (기존 HTML 코드) ... -->
+
+    <script>
+      // 기존 JavaScript 코드는 그대로 유지
+      // ... (기존 JavaScript 코드) ...
+      
+      // PDF 뷰어 초기화 함수 추가
+      function setupPDFViewers() {
+        const pdfIframes = document.querySelectorAll('.iframe-content iframe[src*=".pdf"]');
+        
+        pdfIframes.forEach(iframe => {
+          // PDF가 제대로 로드되지 않을 경우를 대비한 처리
+          iframe.onerror = function() {
+            const parent = this.parentElement;
+            parent.innerHTML = `
+              <div class="pdf-placeholder">
+                <div class="pdf-icon">📄</div>
+                <p>PDF를 로드할 수 없습니다.</p>
+                <p>아래 링크를 통해 PDF를 확인하세요.</p>
+                <a href="${this.src}" target="_blank">PDF 보기</a>
+              </div>
+            `;
+          };
+        });
+      }
+      
+      // 페이지 로드 시 초기화 - 수정됨
+      window.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        createPortraitBackground();
+        setupImageInteractions();
+        setupCTAButton();
+        setupRecInteractions();
+        setupPDFViewers(); // PDF 뷰어 초기화 추가
+
+        // 첫 번째 패널 활성화 (Life Journey)
+        const firstPanel = document.querySelector(".detail-panel");
+        if (firstPanel) {
+          firstPanel.classList.add("active");
+        }
+
+        const firstImage = document.querySelector(".image-item");
+        if (firstImage) {
+          firstImage.classList.add("active");
+        }
+
+        // 새로운 용어 섹션의 첫 번째 패널도 활성화
+        const firstRecPanel = document.querySelector(".rec-detail-panel");
+        if (firstRecPanel) {
+          firstRecPanel.classList.add("active");
+        }
+
+        const firstRecItem = document.querySelector(".rec-item");
+        if (firstRecItem) {
+          firstRecItem.classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>

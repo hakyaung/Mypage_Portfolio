@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정하경 - AI소프트웨어학과</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+        background: #0a0a16;
+        color: #e0e0ff;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* 별 배경 효과 */
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background: radial-gradient(
+          ellipse at center,
+          #0a0a16 0%,
+          #000000 100%
+        );
+      }
+
+      .star {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        animation: twinkle 5s infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* 초상화 배경 애니메이션 - 수정됨 */
+      .portrait-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .portrait-row {
+        display: flex;
+        width: max-content;
+        animation: slideLeft 40s linear infinite;
+        margin-bottom: 100px;
+      }
+
+      .portrait-row:nth-child(even) {
+        animation-direction: reverse;
+        margin-left: -200px;
+      }
+
+      .portrait {
+        width: 120px;
+        height: 120px;
+        margin: 0 30px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(90, 70, 255, 0.2),
+          rgba(255, 107, 157, 0.2)
+        );
+        border: 2px solid rgba(90, 70, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        opacity: 0.3;
+        filter: blur(1px);
+        transform: scale(0.9);
+        transition: all 0.3s ease;
+      }
+
+      .portrait:hover {
+        opacity: 0.6;
+        transform: scale(1);
+        filter: blur(0);
+      }
+
+      @keyframes slideLeft {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* 헤더 */
+      .header {
+        background: rgba(10, 10, 22, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        text-align: center;
+      }
+
+      .header h1 {
+        color: #5a46ff;
+        font-size: 1.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.7);
+      }
+
+      /* 네비게이션 */
+      nav {
+        background: rgba(15, 15, 30, 0.9);
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(90, 70, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      .nav-menu a {
+        color: #a0a0ff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+
+      .nav-menu a:hover {
+        color: #5a46ff;
+        background: rgba(90, 70, 255, 0.1);
+        box-shadow: 0 0 10px rgba(90, 70, 255, 0.3);
+      }
+
+      .annotation {
+        background: #5a46ff;
+      }
+
+      .annotation a {
+        color: white;
+        text-decoration: none;
+      }
+
+      /* 메인 배너 */
+      .main-banner {
+        background: linear-gradient(135deg, #0a0a16 0%, #1a1a3a 100%);
+        padding: 180px 40px;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(90, 70, 255, 0.3);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .banner-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(90,70,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(90,70,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(90,70,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      /* 우주 이미지 슬라이더 */
+      .space-slider {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .space-images {
+        display: flex;
+        width: 300%;
+        height: 100%;
+        animation: slideSpace 30s linear infinite;
+      }
+
+      .space-image {
+        width: 33.333%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.4;
+        filter: brightness(0.7) contrast(1.2);
+      }
+
+      .space-image:nth-child(1) {
+        background-image: url("https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_main.png?raw=true");
+      }
+
+      .space-image:nth-child(2) {
+        background-image: url("https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_blackhole.png?raw=true");
+      }
+
+      .space-image:nth-child(3) {
+        background-image: url("https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_wrong.png?raw=true");
+      }
+
+      @keyframes slideSpace {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-33.333%);
+        }
+      }
+
+      .banner-content {
+        position: relative;
+        z-index: 2;
+        max-width: 100%;
+        margin: 0 auto;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+      }
+
+      .banner-title {
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 0.05em;
+        background: linear-gradient(90deg, #5a46ff, #ff6b9d);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(90, 70, 255, 0.5);
+      }
+
+      .banner-subtitle {
+        font-size: 1.4rem;
+        opacity: 0.9;
+        margin-bottom: 40px;
+        font-weight: 300;
+        color: #a0a0ff;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(90deg, #5a46ff, #ff6b9d);
+        color: white;
+        padding: 15px 35px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(90, 70, 255, 0.5);
+        position: relative;
+        z-index: 2;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(90, 70, 255, 0.7);
+      }
+
+      /* 메인 컨텐츠 */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 40px;
+      }
+
+      /* 아티클 섹션 */
+      article {
+        background: rgba(15, 15, 30, 0.7);
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      article h2 {
+        color: #5a46ff;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+      }
+
+      article p {
+        color: #e0e0ff;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      /* 사이드바 */
+      aside {
+        background: rgba(15, 15, 30, 0.7);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 60px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      aside h3 {
+        color: #ff6b9d;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      }
+
+      aside ul {
+        list-style: none;
+      }
+
+      aside li {
+        margin-bottom: 15px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      aside li:before {
+        content: "🚀";
+        position: absolute;
+        left: 0;
+      }
+
+      aside a {
+        color: #a0a0ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      aside a:hover {
+        color: #5a46ff;
+      }
+
+      /* 라이프 스토리 섹션 */
+      .life-story {
+        margin-bottom: 100px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #5a46ff;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 15px rgba(90, 70, 255, 0.5);
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: #a0a0ff;
+        font-weight: 300;
+      }
+
+      /* 이미지 그리드 - 교차 배치 */
+      .images-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .image-item {
+        background: rgba(20, 20, 40, 0.7);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        border: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      .image-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(90, 70, 255, 0.3);
+        border-color: rgba(90, 70, 255, 0.7);
+      }
+
+      .image-item.active {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(90, 70, 255, 0.5);
+        border: 2px solid #5a46ff;
+      }
+
+      .image-placeholder1 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder1::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/astronomical_telescope_in_mars.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-placeholder2 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder2::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_main.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-placeholder3 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder3::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_blackhole.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-placeholder4 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder4::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_wrong.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-placeholder5 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder5::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_StabilityDrive.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-placeholder6 {
+        height: 200px;
+        background: linear-gradient(135deg, #1a1a3a 0%, #2a2a5a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .image-placeholder6::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(90,70,255,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');*/
+        background: url('https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/Harmonium.png?raw=true');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(90, 70, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .image-item:hover .image-overlay {
+        opacity: 1;
+      }
+
+      .image-text {
+        color: white;
+        text-align: center;
+      }
+
+      .image-year {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      .image-title {
+        font-size: 1.1rem;
+        font-weight: 300;
+      }
+
+      .image-info {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .image-info h3 {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: #5a46ff;
+        margin-bottom: 8px;
+      }
+
+      .image-info p {
+        color: #a0a0ff;
+        font-size: 0.95rem;
+      }
+
+      /* 상세 설명 패널 */
+      .detail-panel {
+        background: rgba(20, 20, 40, 0.8);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: none;
+        animation: fadeInUp 0.5s ease;
+        border-left: 4px solid #5a46ff;
+        backdrop-filter: blur(10px);
+        margin-top: 30px;
+      }
+
+      .detail-panel.active {
+        display: block;
+      }
+
+      .detail-panel h3 {
+        font-size: 2.2rem;
+        color: #5a46ff;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+      }
+
+      .detail-panel .year-badge {
+        display: inline-block;
+        background: linear-gradient(90deg, #5a46ff, #ff6b9d);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+      }
+
+      .detail-panel p {
+        color: #e0e0ff;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+      }
+
+      .detail-panel p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* 추천 섹션 */
+      .recommendations {
+        background: rgba(10, 10, 22, 0.8);
+        padding: 100px 0;
+        margin-top: 100px;
+        border-top: 1px solid rgba(90, 70, 255, 0.3);
+        border-bottom: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      .recommendations .container {
+        padding: 0 40px;
+      }
+
+      .rec-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .rec-item {
+        background: rgba(20, 20, 40, 0.7);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(90, 70, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .rec-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(90, 70, 255, 0.3);
+        border-color: rgba(90, 70, 255, 0.7);
+      }
+
+      .rec-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #5a46ff, #ff6b9d);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2rem;
+        box-shadow: 0 0 20px rgba(90, 70, 255, 0.5);
+      }
+
+      .rec-item h4 {
+        font-size: 1.4rem;
+        color: #5a46ff;
+        margin-bottom: 15px;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+      }
+
+      .rec-item p {
+        color: #a0a0ff;
+        line-height: 1.6;
+      }
+
+      /* 자료 보관함 섹션 */
+      .resources-section {
+        background: rgba(10, 10, 22, 0.8);
+        padding: 100px 0;
+        border-top: 1px solid rgba(90, 70, 255, 0.3);
+        border-bottom: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .resource-item {
+        background: rgba(20, 20, 40, 0.7);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(90, 70, 255, 0.3);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .resource-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(90, 70, 255, 0.3);
+        border-color: rgba(90, 70, 255, 0.7);
+      }
+
+      .resource-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #5a46ff, #ff6b9d);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 2rem;
+        box-shadow: 0 0 20px rgba(90, 70, 255, 0.5);
+      }
+
+      .resource-item h4 {
+        font-size: 1.4rem;
+        color: #5a46ff;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+        margin: 0;
+      }
+
+      .resource-preview {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(10, 10, 22, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .resource-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .resource-item:hover .resource-preview img {
+        transform: scale(1.1);
+      }
+
+      .pdf-preview, .link-preview {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .pdf-preview p, .link-preview p {
+        color: #a0a0ff;
+        margin: 5px 0;
+      }
+
+      .file-info {
+        font-size: 0.9rem;
+        color: #ff6b9d !important;
+        font-weight: 500;
+      }
+
+      .download-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #5a46ff, #ff6b9d);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(90, 70, 255, 0.3);
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(90, 70, 255, 0.5);
+      }
+
+      @media (max-width: 1024px) {
+        .resources-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .resources-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* 푸터 */
+      .footer {
+        background: #050510;
+        color: white;
+        padding: 60px 0 40px;
+        text-align: center;
+        border-top: 1px solid rgba(90, 70, 255, 0.3);
+      }
+
+      .footer-logo {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        background: linear-gradient(90deg, #5a46ff, #ff6b9d);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(90, 70, 255, 0.5);
+      }
+
+      .footer-content {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .footer-section {
+        margin-bottom: 25px;
+      }
+
+      .footer-section h4 {
+        color: #5a46ff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 10px rgba(90, 70, 255, 0.5);
+      }
+
+      .footer-section p {
+        color: #a0a0ff;
+        font-size: 0.95rem;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .images-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .portrait {
+          width: 100px;
+          height: 100px;
+          font-size: 2rem;
+        }
+
+        .banner-title {
+          font-size: 3.5rem;
+        }
+
+        .iframe-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.4rem;
+        }
+
+        .banner-title {
+          font-size: 2.8rem;
+        }
+
+        .images-container {
+          grid-template-columns: 1fr;
+        }
+
+        .rec-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .iframe-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 60px 20px;
+        }
+
+        .main-banner {
+          padding: 120px 20px;
+          height: 80vh;
+        }
+
+        .portrait {
+          width: 80px;
+          height: 80px;
+          font-size: 1.8rem;
+          margin: 0 20px;
+        }
+
+        .space-images {
+          animation-duration: 40s;
+        }
+
+        .nav-menu {
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+
+      .rec-item {
+        cursor: pointer; /* 클릭 가능함을 나타내는 커서 */
+      }
+
+      /* 새로운 용어 섹션의 상세 설명 패널 */
+      .rec-detail-panel {
+        background: rgba(20, 20, 40, 0.8);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: none;
+        animation: fadeInUp 0.5s ease;
+        border-left: 4px solid #ff6b9d; /* Life Journey와 색상 차별화 */
+        backdrop-filter: blur(10px);
+        margin-top: 30px;
+        grid-column: 1 / -1; /* 전체 너비 사용 */
+      }
+
+      .rec-detail-panel.active {
+        display: block;
+      }
+
+      .rec-detail-panel h3 {
+        font-size: 2.2rem;
+        color: #ff6b9d; /* Life Journey와 색상 차별화 */
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      }
+
+      .rec-detail-panel .term-badge {
+        display: inline-block;
+        background: linear-gradient(90deg, #ff6b9d, #5a46ff); /* Life Journey와 색상 차별화 */
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      }
+
+      .rec-detail-panel p {
+        color: #e0e0ff;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+      }
+
+      .rec-detail-panel p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* 새로운 용어 섹션 그리드 레이아웃 조정 */
+      .rec-section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      @media (max-width: 1024px) {
+        .rec-section {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .rec-section {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 별 배경 -->
+    <div class="stars" id="stars"></div>
+
+    <!-- 초상화 배경 애니메이션 -->
+    <div class="portrait-background" id="portraitBackground"></div>
+
+    <header class="header">
+      <div class="header-content">
+        <h1>AI소프트웨어학과 2022320039 정하경</h1>
+      </div>
+    </header>
+
+    <!-- 네비게이션 -->
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li><a href="#container">소개</a></li>
+          <li><a href="#journey">여정</a></li>
+          <li><a href="#recommendations">새로운 용어</a></li>
+          <li><a href="#resources">자료 보관함</a></li>
+          <li><a href="#footer">연락처</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="main-banner">
+      <div class="banner-bg"></div>
+
+      <!-- 우주 이미지 슬라이더 -->
+      <div class="space-slider">
+        <div class="space-images">
+          <div class="space-image"></div>
+          <div class="space-image"></div>
+          <div class="space-image"></div>
+        </div>
+      </div>
+
+      <div class="banner-content">
+        <h1 class="banner-title">붉은 별의 철학자</h1>
+        <p class="banner-subtitle">
+          이 설정은 '프로젝트 헤일메리'의 탐사, '보이저'의 '골든 레코드', 그리고
+          '인터스텔라'의 설정을 모두 아우르면서도, 인류의 능동적인 노력이 외계
+          문명과의 접촉을 이끌어낸다는 새로운 서사를 창조합니다.<br />
+          '프로젝트 헤일메리'를 재미있게 읽고 나서 인용하며 새로운 소설을 구성해
+          보았습니다.
+        </p>
+        <button class="cta-button">Story 시작하기</button>
+      </div>
+    </section>
+
+    <div class="container" id="container">
+      <!-- 메인 아티클 섹션 -->
+      <article id="about">
+        <h2>새로운 거처를 찾기 위한 여정 : '시간의 역설자들'</h2>
+        <img
+          src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/ID_picture.jpg?raw=true"
+          alt="Spaceship"
+          style="
+            width: 200px;
+            display: block;
+            margin: 10px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          "
+        />
+        <p>
+          제일 최근에 찍은 깔끔한 사진이 증명사진 뿐이고, 증명사진이 군대에 있을
+          때 찍은 것 뿐이라 부득이 하게 해당 사진을 사용하게 되었습니다.
+        </p>
+        <p>
+          저는 평소에도 우주에 관심을 많이 가지고 있었습니다. 또한, 비교적
+          최근에 앤디위어 작가의 '프로젝트 헤일메리' 라는 책을 읽었습니다.<br />
+          그리고 해당 책의 내용을 이번 과제에 접목시켜서 새로운 이야기를 만들어
+          나가는 것도 재밌겠다 생각하게 되었습니다.<br />그래서 '프로젝트
+          헤일메리' 뿐 아니라 '인터스텔라' 와 인류가 만든 물체중 최초로 성간에
+          진입한 보이저 1호의 골든 레코드도 접목시켜 보았습니다. <br />최대한
+          표절이 아닌 인용을 하려 했지만 부족한 점이 많은 점 양해 부탁드립니다.
+        </p>
+        <p>
+          해당 내용을 간단하게 요약하면 아래와 같습니다.<br />
+          정하경은 태양 쇠퇴라는 절망적 위기 앞에서
+          <span class="annotation"><a href="#recommendations">'인류학적 시간 역설'</a></span> 을 끊기 위해,<br />
+          동료들과 함께 <span class="annotation"><a href="#recommendations">스태빌리티 드라이브</a></span> 를 이용해 웜홀 너머 <span class="annotation"><a href="#recommendations">프록시마 b</a></span> 로 향합니다. 
+          <br />목표 행성에서의 좌절 후, 
+          우연히 발견한 외계 기록
+          <span class="annotation"><a href="#recommendations">'하르모니움'</a></span> 을 해독하여 <span class="annotation"><a href="#recommendations">에이도스</a></span>
+          문명과 접촉하고,<br />
+          그들의 도움으로 인류가 영원히 정착할 수 있는
+          <span class="annotation"><a href="#recommendations">'뉴 에덴'</a></span> 을 찾아냅니다. <br />이는
+          희생을 멈추고 공존을 선택함으로써 인류의 운명을 구원한, 네 명의
+          선구자에 대한 기록입니다.
+        </p>
+        <p>
+          <span style="color: red;">여기서 나오는 모든 사진들은 원본사진을 이용해서 AI로 변형하거나 아니면 처음부터 AI로 창작한 이미지들입니다.</span>
+        </p>
+        <p>
+          <span style="color: red;">이미지들은 Github 올린 후에 주소를 복사해서 가져오는 방식으로 하였습니다.</span>
+        </p>
+      </article>
+
+      <section class="life-story" id="journey">
+        <div class="section-header">
+          <h2 class="section-title">Life Journey</h2>
+          <p class="section-subtitle">각 시기별 중요한 순간들을 담은 이야기</p>
+        </div>
+
+        <div class="images-container">
+          <div class="image-item" data-target="childhood">
+            <div class="image-placeholder1">
+              <div class="image-overlay">
+                <div class="image-text">
+                  <div class="image-year">5292-5312</div>
+                  <div class="image-title">0세부터 20살이 되기 전까지</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-info">
+              <h3>호기심의 시작</h3>
+              <p>역설의 기원과 천재성의 완성</p>
+            </div>
+          </div>
+
+          <div class="image-item" data-target="elementary">
+            <div class="image-placeholder2">
+              <div class="image-overlay">
+                <div class="image-text">
+                  <div class="image-year">5312-5332</div>
+                  <div class="image-title">20대부터 40대까지</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-info">
+              <h3>가장 화려하고 결정적인 시기</h3>
+              <p>도전, 좌절, 그리고 구원</p>
+            </div>
+          </div>
+
+          <div class="image-item" data-target="middle">
+            <div class="image-placeholder3">
+              <div class="image-overlay">
+                <div class="image-text">
+                  <div class="image-year">2342-♾️</div>
+                  <div class="image-title">50대부터 죽을때까지</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-info">
+              <h3>역설의 완성, 그리고 영원한 기록</h3>
+              <p>최후의 역설적인 모험</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 상세 설명 패널들 -->
+        <div id="detail-childhood" class="detail-panel">
+          <p><br><br><br></p>
+          <span class="year-badge">5292-5312</span>
+          <h3>태어나서 20살이 되기 전까지: 역설의 기원과 천재성의 완성</h3>
+          <p>
+            <h4 style="color: yellow;">0~15세 (5292년 ~ 5307년): 경계와 희생의 무의식적 인식, '인류학적 시간 역설'의 정립</h4>
+            정하경은 화성 최대의 거주지인 **아레스 시(Ares City)**에서 태어났습니다. <br>
+            그의 부모는 인류의 지속 가능한 미래를 연구하는 엘리트 과학자였으며, 하경의 주변 환경은 인류의 기술적 승리를 상징했습니다.
+          </p>
+          <p>
+            인공 푸른 하늘과 **적색 관목(Red-Tundra Shrub)**으로 이루어진 완벽한 환경 속에서 성장했지만, 
+            외부의 붉은 모래 폭풍이 돔 천장에 부딪히는 소리나, 부모님 연구실의 복잡한 수치와 패턴을 접하며 안정성이 위협받는 경계를 무의식적으로 인지했습니다.
+          </p>
+          <p>
+            아버지로부터 지구의 자원 고갈과 화성 이주 과정의 거대한 희생에 대한 이야기를 들으며, 
+            인류의 현재의 평화가 과거 세대의 막대한 비용과 부채 위에서 이루어졌음을 학습했습니다. <br>
+            태양 쇠퇴 가속화 공식 발표를 접하고, 인류에게 남은 시간이 얼마 없다는 위기감을 느꼈습니다.
+          </p>
+          <p>
+            학교 과학 시간과 아버지의 연구 자료를 통해 웜홀(Wormhole) 이론과 라그랑주 포인트(Lagrange Point) 개념을 습득했습니다. <br>
+            그는 태양의 쇠퇴가 단순히 노화가 아니라, 시공간 환경의 불안정성과 관련이 있을 수 있다는 가설을 세우고, 해결의 실마리를 목성 L1 라그랑주 포인트에서 찾기 시작했습니다.
+          </p>
+          <p>
+            태양의 스펙트럼 흡수선이 예측과 다르게 불규칙하게 변하는 미세한 패턴을 발견했습니다. <br>
+            그는 이 현상이 웜홀 생성 시 발생하는 시공간 압력의 징후일 수 있다고 추론했습니다. <br>
+            태양 쇠퇴 가속화에 대한 대중의 불안감이 커지자, 그는 인류가 **'시간 부채'**를 갚아야 할 절체절명의 순간에 도달했음을 절감했습니다.
+          </p>
+          <p>
+            고전 역사서와 철학을 탐독하며 **'인류학적 시간 역설'**을 정립했습니다.<br>
+            **"인류의 생존은 미래 세대의 시간을 훔치는 순환이며, 이 순환을 끊는 것만이 진정한 구원이다"**라는 명제를 세웠습니다. <br>
+            그는 더 이상 위험을 다음 세대에 미루지 않고, 영구적인 정착지를 찾아야 한다고 결론지었습니다.
+          </p>
+          <p>
+            자신의 철학을 과학으로 구현하기 위해 **'스태빌리티 드라이브'**의 기초 수학 모델링을 완성했습니다. <br>
+            웜홀 진입 시 발생하는 시공간 난류를 역위상 파동으로 상쇄하여 탐사선을 보호하는 획기적인 기술이었습니다. <br> 
+            화성 과학 아카데미에 조기 입학하며 노아 프로젝트에 참여를 공식 선언했습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/three.png?raw=true" width="50%">
+          </p>
+          <p>
+            <h4 style="color: yellow;">16~20세 (5308년 ~ 5312년): 스태빌리티 드라이브의 완성</h4>
+          </p>
+          <p>
+            아카데미에서 '스태빌리티 드라이브'의 안정성 및 효율성 검증에 몰두했습니다. <br>
+            그의 이론은 주류 학계의 격렬한 비판을 받았지만, 위기 속에서 유일한 돌파구로 여겨져 노아 프로젝트의 핵심 동력 시스템으로 채택되었습니다.
+          </p>
+          <p>
+            노아 프로젝트의 웜홀 및 추진 시스템 총괄 책임자로 임명되었으며, 팀원인 **안드리야(항성공학), 레이첼(생물학), 루카스(엔지니어링)**와 함께 탐사선 건조 및 드라이브 통합 작업에 착수했습니다. <br>
+            그는 웜홀 진입 직전에 필요한 최종 시공간 계산을 맡게 되면서, 인류의 운명을 짊어진 청년 과학자로서의 막중한 책임을 느끼기 시작했습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/Stability_Drive.png?raw=true" width="50%">
+          </p>
+        </div>
+
+        <div id="detail-elementary" class="detail-panel">
+          <p><br><br><br></p>
+          <span class="year-badge">5312-5332</span>
+          <h3>20대부터 40대까지: 가장 화려한 시기 (도전, 좌절, 그리고 구원)</h3>
+          <p>
+            <h4 style="color: yellow;">20~25세 (5312년 ~ 5317년): 노아 프로젝트와 스태빌리티 드라이브 통합</h4>
+          </p>
+          <p>
+            노아 프로젝트의 총괄 책임자로 임명. <br>
+            인류의 모든 희망과 자원이 투입되는 프로젝트의 압도적인 무게를 젊은 나이에 감당해야 했습니다. <br>
+            **프록시마 b**를 목표로 하는 탐사선 건조를 지휘하며, 스태빌리티 드라이브의 최종 설계 및 제작에 집중.
+          </p>
+          <p>
+            팀원들(항성공학자 안드리야, 생물학자 레이첼, 엔지니어 루카스)과 협력하여 드라이브를 탐사선에 통합하고, 웜홀 진입 시뮬레이션을 반복했습니다. <br>
+            하경은 시뮬레이션 상에서 발생하는 시공간 난류의 미세한 변화를 예측하며 드라이브의 코드를 수십 번 수정했습니다. <br>
+            팀워크를 다지면서도, 홀로 **'인류학적 시간 역설'**의 무게를 짊어지고 있음을 인지했습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_blackhole.png?raw=true" width="50%">
+          </p>
+          <p>
+            <h4 style="color: yellow;">25~30세 (5317년 ~ 5322년): 웜홀 진입과 극한의 표류</h4>
+          </p>
+          <p>
+            노아 탐사선 발사(5317년) 후 약 1년간 시스템 점검을 완료하고, 동면(Cryosleep)에 진입(5318년). <br>
+            탐사선은 목성 L1 라그랑주 포인트까지의 긴 무인 항해를 수행했습니다. <br>
+            28세에 동면에서 깨어나 웜홀 진입을 준비했습니다. 스태빌리티 드라이브가 작동하며 웜홀 경계면에 진입했으나, 예측을 초과하는 웜홀 난류로 인해 탐사선 동력 및 통신 시스템 마비.
+          </p>
+          <p>
+            프록시마 센타우리 근처에 표류하며 극한의 환경에 직면했습니다. <br>
+            루카스는 마비된 시스템을 복구하는 데 전념했고, 레이첼은 탐사 드론을 급히 제작하여 **프록시마 b**로 보냈습니다. <br>
+            결과: 프록시마 b 가 치명적인 방사선과 불안정한 대기로 인류 거주 불가능하다는 충격적인 데이터 확인. <br>
+            하경은 자신의 이론이 파국을 막지 못하고 인류를 최후의 절망으로 몰아넣었다는 죄책감에 휩싸였습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/ice.png?raw=true" width="50%">
+          </p>
+          <p>
+            <h4 style="color: yellow;">30~35세 (5322년 ~ 5327년): 절망 속의 희망, 하르모니움과의 조우</h4>
+          </p>
+          <p>
+            팀원 모두 깊은 절망과 자원 고갈의 위기에 직면. <br>
+            노아 호가 표류한 공간에서 하경의 물리학적 감각은 미세한 시공간적 패턴이 지속되고 있음을 포착했습니다. 이는 프록시마 센타우리 항성계의 자연적인 신호가 아님을 직감.
+          </p>
+          <p>
+            루카스가 마침내 레이더 시스템을 복구하고, 하경이 포착했던 미세한 패턴이 **'하르모니움(Harmonium)'**이라는 나선형 결정 구조물 형태의 고밀도 파동 기록물임을 확인. <br>
+            루카스는 이 삼진법 기반의 외계 코드를 해독하기 위한 '파동 해석기' 제작에 착수. <br>
+            하경은 '인류의 지성으로는 해결할 수 없는 문제를 우주의 지성이 도울 수 있다'는 새로운 희망을 품기 시작했습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/Harmonium.png?raw=true" width="50%">
+          </p>
+          <p>
+            <h4 style="color: yellow;">35~40세 (5327년 ~ 5332년): 에이도스와의 협력과 뉴 에덴의 탄생</h4>
+          </p>
+          <p>
+            루카스가 하르모니움 해독에 성공하고, 이 기록물이 에이도스 문명의 방대한 생물학적 환경 데이터베이스임을 확인. <br>
+            기록이 지목하는 좌표(프록시마 센타우리에서 약 10광년 거리)로 하경의 웜홀 이론 기반 신호를 발송.
+          </p>
+          <p>
+            에이도스 문명과의 첫 접촉. 에이도스들은 하경의 **'인류학적 시간 역설'**에 깊이 공감하며, 자신들의 데이터베이스를 공유. <br>
+            레이첼은 이 데이터를 분석하여 인류 생체 조건에 완벽하게 맞는 행성을 찾아냈고, 하경은 이곳을 **'뉴 에덴'**이라 명명했습니다. <br>
+            에이도스들은 노아 호의 동력 시스템 수리와 뉴 에덴으로의 이동을 위한 기술을 지원했습니다. 이로써 하경은 가장 절망적인 실패 속에서 가장 위대한 구원을 이끌어낸 영웅이 되었습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/harmonium_2.png?raw=true" width="50%">
+          </p>
+        </div>
+
+        <div id="detail-middle" class="detail-panel">
+          <p><br><br><br></p>
+          <span class="year-badge">2342-♾️</span>
+          <h3>노년기: 역설의 완성, 그리고 영원한 기록 (50세 이후)</h3>
+          <p>
+            <h4 style="color: yellow;">50~70세 (2342년 ~ 2362년): 역설의 종식과 하모니 위원회</h4>
+          </p>
+          <p>
+            정하경과 팀원들은 **'뉴 에덴'**으로의 성공적인 이주 프로젝트를 총괄하며 **'뉴 에덴의 선구자들'**로 추앙받습니다. <br>
+            하경은 에이도스 문명과의 평화로운 공존을 위한 하모니 위원회를 설립하고, 인류가 마침내 '현재의 위험을 미래에 전가하지 않는' 새로운 문명을 건설했음을 확인합니다. <br>
+            그의 **'인류학적 시간 역설'**은 이론을 넘어 현실 속에서 완벽하게 해소되었습니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_wrong.png?raw=true" width="50%">
+          </p>
+          <p>
+            <h4 style="color: yellow;">70세 이후: 최후의 역설적 모험 (영원한 기록)</h4>
+          </p>
+          <p>
+            하경은 자신이 정립한 철학이 다음 세대에게 **'부채 없는 미래'**를 선사했음을 확인했으나, 그의 탐구 정신은 멈추지 않았습니다. <br>
+            그는 자신의 마지막 존재 방식을 인류가 상상하지 못한 **'영원한 개척의 기록'**으로 남기기로 결정합니다.
+          </p>
+          <p style="margin-left: 30px;">
+            <strong>최후의 선택</strong>: 하경은 자신의 모든 경험과 지혜를 집대성한 **'역설의 서(The Book of Paradoxes)'**를 인류에게 남긴 후, <br>
+            자신의 몸을 **냉동인간(Cryonics)**으로 보존하여 우주로 보내는 **'개인적인 마지막 프로젝트'**를 시작합니다.
+          </p>
+          <p style="margin-left: 30px;">
+            <strong>목적지 선정</strong>: 하경은 인류가 거주할 수 있는 행성이 아닌, 지적 탐구의 극한을 상징하는 곳을 목적지로 정합니다.<br>
+            그의 목적지는 제2의 지구가 아닌, **보이드(Void)**라고 불리는 은하가 없거나 공허한 공간 , 혹은 블랙홀의 경계와 같이 인류 지성의 마지막 영역이 될 수 있습니다.
+          </p>
+          <p style="margin-left: 30px;">
+            <strong>특수 관과 동면 진입</strong>: 그의 몸은 스태빌리티 드라이브의 핵심 기술이 적용된 특수 제작된 관에 안치됩니다. <br>
+            이 관은 동면 기술과 냉동인간 보존 기술이 모두 탑재되어 있습니다. 하경은 뉴 에덴 대기권을 벗어난 후, <br>
+            약물을 투여받아 신체 표면을 냉각시키고 대사를 감소시켜 **동면(Hibernation)**에 들어갑니다
+          </p>
+          <p style="margin-left: 30px;">
+            <strong>냉동인간으로의 전환</strong>: 오랜 시간이 흘러 하경이 법적으로 사망하게 되는 시점을 기준으로, 관 내부의 시스템이 자동으로 작동합니다. <br>
+            모든 피와 체액을 빼내고, 부피 증가로 인한 세포막 파열을 막기 위해 부동액으로 교체됩니다. 마지막으로 영하 196도로 급속 냉각되어 질소 탱크에 보존됩니다
+          </p>
+          <p style="margin-left: 30px;">
+            <strong>영원한 항해</strong>: 정하경이 탑승한 관은 자신이 정한 미지의 목적지를 향해 영원히 우주를 항해하는 **'영원한 기록물'**이 됩니다. <br>
+            그는 자신이 죽어서도 우주를 떠돌며 , 지구보다 더 발전한 기술을 가진 외계인이 언젠가 자신을 해동시켜 줄 수 있다는 최후의 역설적 희망을 남깁니다.
+          </p>
+          <p>
+            하경은 인류에게 **'희생의 고리를 끊으라'**는 철학적 유산을 남겼을 뿐만 아니라, <br>
+            자신의 몸을 영원히 모험하는 존재로 만듦으로써 인류의 개척 정신이 시간과 죽음을 초월할 수 있음을 증명하며 장대한 서사를 마무리합니다.
+          </p>
+          <p>
+            <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/end.png?raw=true" width="50%">
+          </p>
+        </div>
+      </section>
+
+      <!-- 사이드바 -->
+      <aside>
+        <h3>관련 링크</h3>
+        <ul>
+          <li><a href="https://github.com/hakyaung">AI소프트웨어학과 2022320039 정하경 GitHub</a></li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%84%BC%ED%83%80%EC%9A%B0%EB%A3%A8%EC%8A%A4%EC%9E%90%EB%A6%AC_%ED%94%84%EB%A1%9D%EC%8B%9C%EB%A7%88">센타우스자리 프록시마</a></li>
+          <li><a href="https://namu.wiki/w/%EB%83%89%EB%8F%99%EC%88%98%EB%A9%B4">동면 관련</a></li>
+          <li><a href="https://www.alcor.org/">냉동인간 프로젝트</a></li>
+          <li><a href="https://namu.wiki/w/%EA%B3%A8%EB%93%A0%20%EB%A0%88%EC%BD%94%EB%93%9C">골든 레코드</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- 추천 섹션 -->
+    <section class="recommendations" id="recommendations">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">새로운 용어</h2>
+          <p class="section-subtitle">
+            소설에서 등장하는 새로운 용어들
+          </p>
+        </div>
+
+        <div class="rec-section">
+          <div class="rec-item" data-target="book">
+            <div class="rec-icon">📚</div>
+            <h4>인류학적 시간 역설</h4>
+            <p>정하경의 삶과 소설의 모든 동기를 관통하는 핵심 철학</p>
+          </div>
+
+          <div class="rec-item" data-target="research">
+            <div class="rec-icon">🔬</div>
+            <h4>스태빌리티 드라이브</h4>
+            <p> '인류학적 시간 역설' 이론을 바탕으로 탄생한, 노아 프로젝트의 가장 중요한 핵심 기술</p>
+          </div>
+
+          <div class="rec-item" data-target="exploration">
+            <div class="rec-icon">🌌</div>
+            <h4>프록시마 b</h4>
+            <p>현실에서도 태양계에 가장 가까운 외계 행성</p>
+          </div>
+
+          <div class="rec-item" data-target="harmonium">
+            <div class="rec-icon">🧬</div>
+            <h4>하르모니움</h4>
+            <p>소설 속에서 인류의 운명을 바꾼 외계 기록물</p>
+          </div>
+
+          <div class="rec-item" data-target="eidos">
+            <div class="rec-icon">👽</div>
+            <h4>에이도스</h4>
+            <p>인류의 새로운 희망을 제시하는 외계 문명</p>
+          </div>
+
+          <div class="rec-item" data-target="eden">
+            <div class="rec-icon">🪽</div>
+            <h4>뉴 에덴</h4>
+            <p>'인류학적 시간 역설'의 굴레를 끊고 새로운 공존의 철학을 시작하는 영구적인 안식처</p>
+          </div>
+
+          <!-- 새로운 용어 섹션 상세 설명 패널들 -->
+          <div id="rec-detail-book" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">인류학적 시간 역설</span>
+            <h3>인류학적 시간 역설 (Anthropocentric Temporal Paradox)</h3>
+            <p>
+              인류학적 시간 역설은 물리학자 정하경이 인류의 역사와 생존 방식을 분석하며 정립한 철학적, 윤리적 개념입니다. <br>
+              이는 인류 문명의 발전이 다음 세대의 자원과 시간을 담보로 한 필연적인 '부채' 위에 세워져 있다는 냉혹한 인식에서 출발합니다.
+            </p>
+            <p>
+              <strong>1. 역설의 정의와 구조</strong><br>
+              이 역설은 다음과 같은 세 가지 단계를 거쳐 완성됩니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>1단계: 희생의 전가 (The Transference of Sacrifice)</strong><br>
+              내용: 인류는 항상 현재의 위기를 모면하기 위해 미래 세대가 해결해야 할 더 큰 문제를 남겨왔습니다.<br>
+              과거 (지구): 풍요로운 환경을 무분별하게 소모하여 자원 고갈과 환경 파괴라는 부채를 다음 세대에게 물려주었습니다.<br>
+              최근 (화성 이주): 화성 이주라는 거대한 프로젝트는 지구 자원을 마지막으로 쥐어짜 이루어졌으며, 이는 다음 세대가 태양 쇠퇴라는 더 근원적인 위기에 직면하게 만들었습니다.<br>
+              결론: 현재의 생존은 미래 세대가 감수해야 할 필연적인 고난을 전제로 합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>2단계: 시간의 도둑질 (The Theft of Time)</strong><br>
+              내용: 과거의 인류가 다음 세대에 '자원'을 도둑질했다면, 정하경의 시대의 인류는 **가장 귀한 자원인 '시간'**을 도둑질하고 있습니다.<br>
+              태양 쇠퇴 속도의 가속화는 인류가 마지막 탈출구를 찾을 시간을 극적으로 단축시켰습니다. 화성인들은 자신들의 생존을 위해 다음 세대가 누려야 할 평화롭고 
+              안정된 탐색의 시간마저 소모하고 있습니다.<br>
+              결론: 이 시점의 생존 노력은 **인류의 마지막 남은 '시간 부채'**를 극대화하는 행위입니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>3단계: 궁극적인 역설 (The Ultimate Paradox)</strong><br>
+              내용: "우리의 생존은 항상 미래 세대의 희생 위에서 이루어졌지만, 이제 더 이상 물려줄 미래 세대가 없다면, 우리의 마지막 생존 노력은 누구를 위한 것인가?"<br>
+              만약 노아 프로젝트가 실패한다면, 하경 세대의 모든 노력은 다음 세대가 아닌 인류의 완전한 종말을 앞당기는 행위로 전락할 수 있습니다.<br>
+              정하경의 목표: 이 역설을 해결하는 유일한 방법은 **'희생의 순환 고리를 끊는 것'**입니다. 즉, 영구적이고 안정적인 정착지인 **'뉴 에덴'**을 찾아내어, <br>
+              다음 세대에게 환경적, 시간적, 윤리적 부채를 전혀 물려주지 않는 새로운 문명을 시작해야 한다는 것입니다.
+            </p>
+            <p>
+              <strong>2. 소설 속에서의 역할</strong><br>
+              '인류학적 시간 역설'은 소설 전체를 이끄는 핵심 동력입니다.<br>
+              동기 부여: 하경이 웜홀 안정화라는 극단적이고 위험한 프로젝트에 자신의 모든 것을 거는 궁극적인 이유가 됩니다.<br>
+              좌절의 심화: **프록시마 b**에서의 실패는 하경에게 자신이 역설을 해결하지 못하고 오히려 인류를 최후의 절망에 빠뜨렸다는 극심한 죄책감을 안겨줍니다.<br>  
+              해결 및 완성: 에이도스 문명과의 공존을 통해 '뉴 에덴'을 찾는 것은 단순히 행성을 찾는 것을 넘어, 타자(他者)와의 협력을 통해 희생의 순환을 영원히 끊어낸다는 철학적 역설의 완벽한 해답이 됩니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/anthropological_time_paradox.png?raw=true" width="50%">
+            </p>
+          </div>
+
+          <div id="rec-detail-research" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">스태빌리티 드라이브(Stability Drive)</span>
+            <h3>스태빌리티 드라이브(Stability Drive)</h3>
+            <p>
+              스태빌리티 드라이브는 단순한 추진 장치가 아니라, <br>
+              **웜홀(Wormhole)**이라는 극한의 시공간 환경을 인간이 만든 탐사선이 안전하게 통과할 수 있도록 '시공간 난류(Turbulence)'를 완벽하게 상쇄하는 안정화 시스템입니다.
+            </p>
+            <p>
+              <strong>1. 개발 목적: 웜홀 진입의 근본적 문제 해결</strong><br>
+              웜홀은 이론상 가장 빠른 초광속 항성 간 이동 경로이지만, 치명적인 불안정성을 내포하고 있습니다.<br>
+              문제점: 웜홀이 열리고 닫힐 때 발생하는 극심한 시공간 왜곡(Spacetime Distortion)과 난류(Turbulence)는 탐사선 자체를 원자 단위로 분해시키거나, 탑승자의 신체에 치명적인 영향을 미칠 수 있습니다. <br>
+              기존의 기술로는 웜홀의 입구를 열 수는 있어도, 그 내부의 난류를 통과할 수 없었습니다.<br>
+              해결책: 정하경은 웜홀 난류가 파괴적이지만 예측 가능한 파동(Wave) 형태로 발생한다고 보고, 이 파동을 실시간으로 감지하고 상쇄하는 역위상(Inverse-Phase) 에너지를 방출하도록 드라이브를 설계했습니다.
+            </p>
+            <p>
+              <strong>2. 작동 원리: 시공간 난류의 상쇄</strong><br>
+              스태빌리티 드라이브는 다음의 세 가지 핵심 구성 요소로 작동합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>A. 난류 감지 센서 (Turbulence Sensor)</strong><br>
+              드라이브 외부에 장착된 초정밀 센서가 웜홀 진입 직전에 발생하는 시공간 난류의 주파수와 진폭을 밀리초(ms) 단위로 측정합니다. <br>
+              이는 중력장과 전자기파를 넘어, 시공간 자체의 뒤틀림을 포착합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>B. 역위상 파동 생성기 (Inverse-Phase Wave Generator)</strong><br>
+              감지된 난류 데이터를 즉시 분석하여, 난류와 정확히 180도 반대되는 위상을 가진 강력한 에너지 파동을 생성합니다. <br>
+              이것이 바로 스태빌리티 드라이브의 핵심 출력입니다.<br>
+              이 역위상 파동을 탐사선 전면과 측면으로 방출함으로써, 웜홀 난류의 파괴적인 에너지를 중화(상쇄)시켜 탐사선 주변에 일시적인 안정화 공간을 만듭니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>C. 에너지 공급원 (Energy Source)</strong><br>
+              드라이브는 단시간에 막대한 양의 에너지를 필요로 합니다. <br>
+              노아 호의 드라이브는 목성 L1 라그랑주 포인트의 안정적인 중력장이 모으는 자연적인 시공간 에너지를 포착하여 동력으로 사용하도록 설계되었습니다. <br>
+              이는 극한의 위험을 감수하고 목성 L1까지 항해한 주된 이유이기도 합니다.
+            </p>
+            <p>
+              <strong>3. 하경의 역할과 '역설'의 반영</strong><br>
+              스태빌리티 드라이브는 정하경의 '인류학적 시간 역설' 철학을 과학 기술로 구현한 것입니다.<br>
+              이론적 기반: 하경은 인류의 가장 큰 죄악인 '미래 세대의 희생'을 끊기 위해서는, 가장 불안정한 시공간을 가장 안정적인 기술로 극복해야 한다고 믿었습니다. <br>
+              드라이브의 안정화 원리는 곧 혼돈 속에서 조화(Stability in Chaos)를 찾는 그의 철학 그 자체입니다. <br>
+              실제 임무: 드라이브의 작동은 자동화되었으나, 웜홀 진입 직전에 발생하는 예측 불가능한 최종 난류 계산은 오직 하경의 이론과 판단에 의존했습니다. <br>
+              웜홀 진입 직후 시스템이 마비된 것은 드라이브가 탐사선 전체의 동력을 희생하여 승무원들이 탑승한 핵심 선실만은 안전하게 보호했음을 의미합니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/spaceship_StabilityDrive.png?raw=true" width="50%">
+            </p>
+          </div>
+
+          <div id="rec-detail-exploration" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">프록시마 b (Proxima b)</span>
+            <h3>프록시마 b (Proxima b)</h3>
+            <p>
+              프록시마 b 는 현실에서도 태양계에 가장 가까운 외계 행성이며, <br>
+              소설에서 인류가 마지막 희망을 걸었던 목표 행성입니다.
+            </p>
+            <p>
+              <strong>1. 위치 및 모항성 (Host Star)</strong><br>
+              프록시마 b 는 지구에서 약 4.24광년 거리에 위치한 프록시마 센타우리(Proxima Centauri) 별을 공전합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>프록시마 센타우리</strong>: 태양계에서 가장 가까운 항성이지만, 태양과는 매우 다릅니다. <br>
+              이 별은 작고, 어둡고, 차가운 적색 왜성(Red Dwarf)입니다. 태양 질량의 약 12%에 불과하며, 매우 희미한 빛을 냅니다.
+            </p>
+            <p>
+              <strong>2. 행성의 특성 및 궤도</strong>
+            </p>
+            <p style="margin-left: 20px;">
+              질량과 크기: 프록시마 b 의 질량은 지구 질량의 약 1.27배 이상으로 추정됩니다. <br>
+              이 정도 질량이라면 지구와 같은 암석형 행성(Rocky Planet)일 가능성이 높습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              공전 주기 및 거리: 프록시마 b 는 모항성인 프록시마 센타우리를 고작 11.2 지구일 만에 한 바퀴 돕니다. <br>
+              태양-지구 거리보다 훨씬 가까운 약 750만 킬로미터(수성-태양 거리의 약 1/20)에서 공전합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              골디락스 존 (Habitable Zone): 모항성의 빛이 약하기 때문에, 이처럼 가까운 궤도에 위치함에도 불구하고 프록시마 b 는 액체 상태의 물이 존재할 수 있는 영역, <br>
+              즉 **골디락스 존(Habitable Zone)**에 속합니다. 이 때문에 프록시마 b 는 오랫동안 '제2의 지구' 후보로 불렸습니다.
+            </p>
+            <p>
+              <strong>3. 소설 속의 '거주 불가능한 현실' (The Fictional Twist)</strong><br>
+              소설에서 화성인들이 프록시마 b 를 목표로 삼았던 이유는 '골디락스 존'에 있다는 이론적 가능성 때문이었습니다. <br>
+              그러나 정하경 팀의 무인 탐사 드론이 밝혀낸 실제 환경은 처참했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>원인</strong>>: 적색 왜성의 불안정성: 적색 왜성인 프록시마 센타우리는 매우 활동적이고 불안정합니다. <br>
+              빛은 희미하지만, 주기적으로 강력한 플레어(Flare)와 X-선 방출을 일으킵니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>실제 환경:</strong>
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>치명적인 방사선</strong>: 모항성에서 너무 가깝기 때문에, 행성은 상시적으로 극도의 자외선과 X-선 방사선에 노출되어 있었습니다. <br>
+              이는 인간의 생명을 유지할 수 없는 수준이었습니다.
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>대기 불안정</strong>: 강력한 플레어 때문에 행성의 대기가 지속적으로 벗겨져 나갔거나, 존재하더라도 불안정한 화학적 구성을 가지고 있었습니다.
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>조석 고정 (Tidal Locking) 가능성</strong>: 이처럼 가까운 궤도에서는 행성의 한쪽 면은 영원히 별을 바라보아 매우 뜨겁고, <br>
+              반대쪽 면은 영원히 어둠 속에 있어 얼어붙었을 가능성이 높습니다.
+            </p>
+            <p>
+              소설 속에서 프록시마 b 는 인류의 희망이 좌절되는 극한의 순간을 상징하며, 정하경 팀이 '인류학적 시간 역설'을 극복하고 더 나은 해법을 찾도록 밀어붙이는 절망적인 발판이 되었습니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/Proxima_b.png?raw=true" width="50%">
+            </p>
+            <p>
+              <a href="https://namu.wiki/w/%ED%94%84%EB%A1%9D%EC%8B%9C%EB%A7%88">프록시마b 나무위키</a>
+            </p>
+          </div>
+
+          <div id="rec-detail-harmonium" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">하르모니움(Harmonium)</span>
+            <h3>하르모니움(Harmonium)</h3>
+            <p>
+              소설 속에서 인류의 운명을 바꾼 외계 기록물  <br>
+              이 기록물은 단순한 통신이 아닌, 한 문명의 존재 이유와 지식을 담은 우주적 타임캡슐입니다.<br>
+              하르모니움은 에이도스 문명이 자신들의 항성계와 생물학적 데이터를 우주에 영구적으로 보존하고 다른 지성체와 공유하기 위해 방출한 고밀도 파동 기록물입니다.<br>
+            </p>
+            <p>
+              <strong>1. 물리적 외형 및 구조</strong>
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>모양</strong>: 하르모니움은 레코드판이나 일반적인 디스크 형태가 아닙니다. 노아 호의 레이더에 포착되었을 때, 이는 지름 약 30미터에 달하는 거대한 나선형 결정 구조물처럼 보였습니다. <br>
+              이 구조물은 일반적인 물질이 아닌, 수많은 미세한 '육각형 결정체'들이 복잡하게 얽히고설킨 형태로 이루어져 있으며, 이 결정체들이 공명하며 안정적인 에너지를 방출하고 있었습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>재질</strong>: 파괴되거나 마모되지 않도록 극도로 안정된 '결정화된 시공간 파동'으로 구성되어 있다고 추정됩니다. <br>
+              루카스가 가까이 다가갔을 때, 손에 잡히는 듯 했으나 실제로는 만질 수 없는 에너지의 응집체였습니다.
+            </p>
+            <p>
+              <strong>2. 작동 방식 및 언어</strong>
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>정보 기록 방식</strong>: 하르모니움은 정보를 전자기파나 빛이 아닌, 미세한 중력파 및 시공간 파동의 형태로 기록하고 방출합니다. <br>
+              이 파동의 패턴 자체가 에이도스 문명의 언어와 데이터입니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>언어와 코드</strong>: 파동의 기본 구조는 삼진법(Ternary System)을 기반으로 하며, 이 진법을 이용해 수학과 기하학을 먼저 설명합니다. <br>
+              그 후, 자신들의 항성계 위치, 항성 에너지 변화 주기, 행성의 환경 조건, 그리고 가장 중요한 자신들의 생물학적 정보를 순차적으로 전달합니다. <br>
+              이 복잡한 패턴을 해독하기 위해 루카스가 엄청난 노력을 기울였습니다.
+            </p>
+            <p>
+              <strong>3. 정보의 내용 및 인류에 미친 영향</strong><br>
+              하르모니움은 인류에게 세 가지 결정적인 정보를 제공했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>생물학적 데이터베이스</strong>: 에이도스 문명이 수백 년간 축적한 광범위한 생물학적 환경 데이터베이스를 담고 있습니다. <br>
+              이는 주변 수백 광년 내의 항성계와 행성들에 대한 온도, 중력, 대기 조성, 방사능 수치 등을 상세하게 기록하고 있습니다. <br>
+              이 데이터는 레이첼이 인류의 생체 조건에 맞는 '뉴 에덴'을 찾아내는 데 결정적인 역할을 했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>위치 정보</strong>: 하르모니움을 방출한 에이도스 문명의 정확한 항성계 좌표가 담겨 있었습니다. <br>
+              이 좌표는 노아 호가 표류하던 프록시마 센타우리 근처에서 약 10광년 거리에 위치했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>철학적 메시지</strong>: 기록물의 표면에 새겨진 듯한 가장 마지막 부분의 파동 패턴은 에이도스 문명의 철학을 담고 있습니다. <br>
+              이는 "지성은 고립이 아닌 협력 속에서만 지속 가능하다"는 메시지를 암시하며, 인류의 '인류학적 시간 역설'을 극복할 실마리가 '공존'에 있음을 간접적으로 시사합니다.
+            </p>
+            <p>
+              하르모니움의 발견은 정하경 팀에게 과학적 희망뿐 아니라, 우주에 홀로 남겨졌다는 절망적인 생각에서 벗어나 '우리는 혼자가 아니다'라는 가장 근원적인 희망을 준 사건이었습니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/Harmonium.png?raw=true" width="50%">
+            </p>
+          </div>
+
+          <div id="rec-detail-eidos" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">에이도스(Eidos)</span>
+            <h3>에이도스(Eidos)</h3>
+            <p>
+              우주에서 처음으로 접촉한 물질적 외계 지성체입니다. 그들의 문명은 인류의 기술과는 전혀 다른 방향으로 발전했으며, 인류의 생존에 결정적인 역할을 합니다.
+            </p>
+            <p>
+              <strong>1. 생김새와 물질적 특성</strong><br>
+              에이도스는 '프로젝트 헤일메리'의 로키처럼 물질적인 육체를 가지고 있습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>외피와 신체 구조</strong>: 에이도스들은 평균 신장 약 2미터의 크기로, 
+              몸 전체가 다공성 석회암(Porous Limestone)과 유사한 단단한 외피(Exoskeleton)로 덮여 있습니다. <br>
+              이 외피는 그들이 사는 행성의 극한 환경을 견디기 위해 진화한 결과입니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>이동 기관</strong>: 이동을 위해 다섯 개의 관절 달린 다리를 사용하며, 각 다리 끝에는 행성의 단단한 지표면을 움켜쥘 수 있는 흡착판 구조가 있습니다. <br>
+              다섯 개의 대칭 구조는 그들의 생물학적, 수학적 사고방식의 근간이 됩니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>감각 및 소통 기관</strong>: 그들의 머리 부분에는 눈이나 귀 같은 기관이 명확하게 보이지 않습니다.<br>
+              대신, 외피 사이에 복잡하게 배열된 공진 수정체가 있으며, 이 수정체들이 공명하여 미세한 진동 파동을 생성하고 수신합니다. 이 파동 발생 기관이 바로 그들의 언어와 인지 기능을 담당합니다.
+            </p>
+            <p>
+              <strong>2. 문명과 기술: 데이터 중심 사회</strong><br>
+              에이도스 문명은 생물학적 및 환경 데이터의 수집, 분석, 보존을 최고 가치로 여깁니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>기술의 방향</strong>: 그들의 기술은 추진이나 무기 개발보다는 초장거리 센싱(Sensing)과 방대한 데이터 저장에 특화되어 있습니다. <br>
+              그들의 파동 발생 기관은 수백 광년 떨어진 행성의 대기 조성, 지표면 온도, 방사능 수치를 정밀하게 측정하고 기록할 수 있습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>생존 방식</strong>: 에이도스들은 자신들의 항성계가 언젠가 쇠퇴할 것을 대비하여, 우주 전체의 '생물학적 피난처(Biological Sanctuary)' 목록을 작성해 왔습니다. <br>
+              그들의 데이터베이스에는 인류가 찾던 '뉴 에덴'과 같은 행성들의 정보가 방대하게 저장되어 있습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>'하르모니움'의 제작</strong>: 그들이 우주에 방출한 '하르모니움'은 이러한 생물학적 데이터와 자신들의 위치, 그리고 문명의 철학을 담은 파동 기록물입니다. <br>
+              이는 다른 지성체와의 협력적인 공존을 위한 목적으로 제작되었습니다.
+            </p>
+            <p>
+              <strong>3. 인류와의 관계 및 교류</strong>
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>첫 만남</strong>: 에이도스들은 하경 팀이 보낸 웜홀 이론 기반의 미세한 신호를 포착하고, 그들의 기록물 '하르모니움'에 대한 해독 시도를 감지하여 답신을 보냈습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>교류의 목적</strong>: 에이도스들은 하경의 '인류학적 시간 역설'에 대해 깊은 윤리적 공감을 표했습니다. 그들은 인류의 생존 노력을 높이 평가했지만, 
+              목표 행성인 프록시마 b 가 치명적임을 알기에, 자신들의 방대한 데이터베이스를 공유하여 인류에게 가장 적합한 행성인 '뉴 에덴'을 추천했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>공존의 가능성</strong>: 에이도스들은 인류에게 기술을 전수하는 대신, 인류가 데이터베이스를 활용하여 윤리적인 선택을 하도록 돕습니다. 
+              이는 정하경의 '희생의 순환 고리를 끊는' 목표를 실현하는 데 결정적인 조력이 됩니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/eidos.png?raw=true" width="50%">
+            </p>
+          </div>
+
+          <div id="rec-detail-eden" class="rec-detail-panel">
+            <br><br><br><br>
+            <span class="term-badge">뉴 에덴(New Eden)</span>
+            <h3>뉴 에덴(New Eden)</h3>
+            <p>
+              <strong>1. 위치 및 발견 경로</strong><br>
+              뉴 에덴은 원래 목표였던 프록시마 b 와는 완전히 다른 항성계에 위치합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>위치</strong>: 에이도스 문명이 거주하는 항성계에서 수십 광년 이내의 가까운 거리에 있는 미지의 항성계에 속합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>발견</strong>: 노아 팀이 프록시마 b 에서 좌절한 후, 에이도스 문명의 하르모니움 기록과 데이터베이스를 통해 발견되었습니다.<br>
+              에이도스들은 수백 개의 행성 데이터 중 인류의 생물학적 조건에 가장 완벽하게 부합하는 곳으로 뉴 에덴을 지목했습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>의미</strong>>: 뉴 에덴은 하경 팀의 물리적 능력으로 찾은 곳이 아니라, 지성 간의 협력과 지혜로 얻어낸 '공존의 결실'이라는 중요한 의미를 가집니다.
+            </p>
+            <p>
+              <strong>2. 행성 환경 및 생물학적 적합성</strong><br>
+              뉴 에덴은 인류가 수백 년 동안 꿈꿔왔던 완벽한 '제2의 지구' 조건을 갖추고 있습니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>모항성</strong>: 안정적인 **G형 주계열성(G-type Main Sequence)**을 모항성으로 두고 있습니다. 
+              이는 태양과 유사한 유형의 항성으로, 수명이 길고 플레어 등의 불안정성이 적어 행성에 안정적인 에너지를 공급합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>대기 및 환경:</strong>
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>산소 및 중력</strong>: 대기 조성은 지구와 거의 동일한 산소 및 질소 농도를 유지하며, 표면 중력 역시 지구와 유사하여 인류의 신체에 부담이 없습니다.
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>자기장</strong>: 행성 자체의 강력한 자기장을 보유하고 있어, 우주 방사선이나 태양풍으로부터 표면을 완벽하게 보호합니다. 이는 프록시마 b 의 치명적인 방사선 문제와 근본적으로 다릅니다.
+            </p>
+            <p style="margin-left: 40px;">
+              <strong>생태계</strong>: 이미 초기 단계의 복잡한 생태계가 형성되어 있습니다. <br>
+              에이도스 문명의 기록을 통해, 이 생태계는 인류가 가져온 식물이나 동물을 이식하기에 적합한 안정적인 생물학적 기반을 가지고 있음이 확인되었습니다.
+            </p>
+            <p>
+              <strong>3. 상징적 의미: 역설의 완성</strong><br>
+              뉴 에덴은 정하경의 **'인류학적 시간 역설'**을 종식시키는 공간입니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>희생의 종식</strong>: 이곳은 인류가 과거의 희생을 기반으로 억지로 개척한 화성과 달리, 영구적인 안정성을 제공합니다. 
+              다음 세대가 태양의 죽음이나 환경 오염에 대한 부담 없이 문명을 발전시킬 수 있는, **'부채가 없는 미래'**를 의미합니다.
+            </p>
+            <p style="margin-left: 20px;">
+              <strong>공존의 시작</strong>: 뉴 에덴은 에이도스 문명의 영향을 받아 탄생한 **'하모니 위원회'**가 존재하는 곳입니다.<br>
+              인류는 이곳에서 에이도스와의 교류를 통해 과학 기술뿐만 아니라 **'지성 간의 상호 존중'**이라는 새로운 윤리적 가치를 배우며, 진정한 우주적 공존의 시대를 열게 됩니다.
+            </p>
+            <p>
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/eden_2.png?raw=true" width="50%">
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기존 iframe 섹션 삭제하고 아래 코드로 교체 -->
+    <section class="resources-section" id="resources">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">자료 보관함</h2>
+          <p class="section-subtitle">프로젝트 관련 이미지와 문서 자료</p>
+        </div>
+
+        <div class="resources-grid">
+          <!-- 이미지 갤러리 -->
+          <div class="resource-item">
+            <div class="resource-icon">🖼️</div>
+            <h4>우주선 스케치</h4>
+            <div class="resource-preview">
+              <img src="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/sapceshipmymymy.png?raw=true" alt="우주선 스케치">
+            </div>
+            <a href="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/image/sapceshipmymymy.png?raw=true" target="_blank" class="download-btn">이미지 보기</a>
+          </div>
+
+          <!-- PDF 다운로드 -->
+          <div class="resource-item">
+            <div class="resource-icon">📄</div>
+            <h4>냉동인간에 대한 생각</h4>
+            <div class="resource-preview pdf-preview">
+              <p>영어 기말 발표 자료</p>
+              <p class="file-info">PDF 문서</p>
+            </div>
+            <a href="https://github.com/hakyaung/2025webprogramming/blob/main/task%231/%EC%98%81%EC%96%B4%20%EA%B8%B0%EB%A7%90%20%EB%B0%9C%ED%91%9C(%EC%98%81%EC%96%B4).pdf" download class="download-btn">PDF 다운로드</a>
+          </div>
+
+          <!-- 외부 링크 -->
+          <div class="resource-item">
+            <div class="resource-icon">📗</div>
+            <h4>프로젝트 헤일메리</h4>
+            <div class="resource-preview link-preview">
+              <p>앤디 위어 장편소설</p>
+              <p class="file-info">Book</p>
+            </div>
+            <a href="https://search.shopping.naver.com/book/catalog/48694890618?cat_id=50005754&frm=PBOKPRO&query=%ED%97%A4%EC%9D%BC%EB%A9%94%EB%A6%AC+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8&NaPm=ct%3Dmg4ryt80%7Cci%3D4358e606673943ce24b4d2af184518f299bd3277%7Ctr%3Dboknx%7Csn%3D95694%7Chk%3D5bbd3c1c7d52f4bdecc99cf3a85b54b513cdb910" target="_blank" class="download-btn">사이트 방문</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="footer">
+      <div class="footer-content">
+        <div class="footer-logo">AI소프트웨어학과 2022320039 정하경</div>
+        <div class="footer-section">
+          <h4>AI소프트웨어학과</h4>
+          <p>학번: 2022320039</p>
+          <p>우주와 기술을 연결하는 혁신적인 연구</p>
+        </div>
+        <div class="footer-section">
+          <h4>연락처</h4>
+          <p>이메일: hk100456@naver.com</p>
+          <p>휴대폰: 010-3012-4770</p>
+        </div>
+        <div class="footer-section">
+          <h4>AI 대화내용 보기</h4>
+          <p><a href="https://g.co/gemini/share/60454fe54105">Google_Gemini</a></p>
+          <p><a href="https://claude.ai/share/6301a2d9-506a-4247-b825-487ddbf4c69f">CLAUDE</a></p>
+          <p><a href="https://chat.deepseek.com/share/u7idmtf1tz1vc96fea">DEEPSEEK(1)</a></p>
+          <p><a href="https://chat.deepseek.com/share/j1yaswvenoifeanwj8">DEEPSEEK(2)</a></p>
+        </div>
+        <div class="footer-section">
+          <p>&copy; 2025 정하경. 모든 권리 보유.</p>
+          <h4>이상입니다!!!!!!!!!!</h4>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 별 배경 생성
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starCount = 200;
+
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          // 랜덤 위치와 크기 설정
+          const size = Math.random() * 3;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          // 랜덤 애니메이션 지연
+          star.style.animationDelay = `${Math.random() * 5}s`;
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // 초상화 배경 생성 - 수정됨
+      function createPortraitBackground() {
+        const container = document.getElementById("portraitBackground");
+        const portraitIcons = [
+          "🌌", "🚀", "🛰️", "🔭", "🌠", "⭐", "🌟", "💫", "☄️", "🪐"
+        ];
+        
+        // 여러 행 생성
+        for (let i = 0; i < 8; i++) {
+          const row = document.createElement("div");
+          row.classList.add("portrait-row");
+          
+          // 각 행에 여러 초상화 추가
+          for (let j = 0; j < 20; j++) {
+            const portrait = document.createElement("div");
+            portrait.classList.add("portrait");
+            
+            // 랜덤 아이콘 선택
+            const randomIcon = portraitIcons[Math.floor(Math.random() * portraitIcons.length)];
+            portrait.textContent = randomIcon;
+            
+            // 랜덤 애니메이션 지연
+            portrait.style.animationDelay = `${Math.random() * 5}s`;
+            
+            row.appendChild(portrait);
+          }
+          
+          container.appendChild(row);
+        }
+      }
+
+      // 이미지 아이템 클릭 이벤트 처리
+      function setupImageInteractions() {
+        const imageItems = document.querySelectorAll(".image-item");
+        const detailPanels = document.querySelectorAll(".detail-panel");
+
+        imageItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+
+            // 모든 패널 숨기기
+            detailPanels.forEach((panel) => {
+              panel.classList.remove("active");
+            });
+
+            // 모든 이미지 아이템 비활성화
+            imageItems.forEach((imgItem) => {
+              imgItem.classList.remove("active");
+            });
+
+            // 해당 패널 표시
+            const targetPanel = document.getElementById(`detail-${targetId}`);
+            if (targetPanel) {
+              targetPanel.classList.add("active");
+              this.classList.add("active");
+
+              // 부드러운 스크롤
+              targetPanel.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      }
+
+      // CTA 버튼 클릭 이벤트
+      function setupCTAButton() {
+        const ctaButton = document.querySelector(".cta-button");
+        ctaButton.addEventListener("click", function () {
+          document.querySelector("#container").scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      }
+
+      /*// 페이지 로드 시 초기화
+      window.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        createPortraitBackground();
+        setupImageInteractions();
+        setupCTAButton();
+
+        // 첫 번째 패널 활성화
+        const firstPanel = document.querySelector(".detail-panel");
+        if (firstPanel) {
+          firstPanel.classList.add("active");
+        }
+
+        const firstImage = document.querySelector(".image-item");
+        if (firstImage) {
+          firstImage.classList.add("active");
+        }
+      });*/
+
+      function setupRecInteractions() {
+        const recItems = document.querySelectorAll(".rec-item");
+        const recDetailPanels = document.querySelectorAll(".rec-detail-panel");
+
+        recItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+
+            // 모든 패널 숨기기
+            recDetailPanels.forEach((panel) => {
+              panel.classList.remove("active");
+            });
+
+            // 모든 rec 아이템 비활성화
+            recItems.forEach((recItem) => {
+              recItem.classList.remove("active");
+            });
+
+            // 해당 패널 표시
+            const targetPanel = document.getElementById(`rec-detail-${targetId}`);
+            if (targetPanel) {
+              targetPanel.classList.add("active");
+              this.classList.add("active");
+
+              // 부드러운 스크롤
+              targetPanel.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      }
+
+      // 페이지 로드 시 초기화 - 수정됨
+      window.addEventListener("DOMContentLoaded", function () {
+        createStars();
+        createPortraitBackground();
+        setupImageInteractions();
+        setupCTAButton();
+        setupRecInteractions(); // 새로운 기능 추가
+
+        // 첫 번째 패널 활성화 (Life Journey)
+        const firstPanel = document.querySelector(".detail-panel");
+        if (firstPanel) {
+          firstPanel.classList.add("active");
+        }
+
+        const firstImage = document.querySelector(".image-item");
+        if (firstImage) {
+          firstImage.classList.add("active");
+        }
+
+        // 새로운 용어 섹션의 첫 번째 패널도 활성화
+        const firstRecPanel = document.querySelector(".rec-detail-panel");
+        if (firstRecPanel) {
+          firstRecPanel.classList.add("active");
+        }
+
+        const firstRecItem = document.querySelector(".rec-item");
+        if (firstRecItem) {
+          firstRecItem.classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>
