@@ -1,0 +1,85 @@
+<!-- DTD : 문서형 정의 -->
+<!DOCTYPE html>
+<!-- 형식 : <태그명 속성명="속성값"> -->
+<!-- <html lang="ko"> : 주언어(lang)가 한글(ko)로 된 HTML 문서의 시작 -->
+<!-- html : HTML 문서의 시작과 끝 -->
+<html lang="ko">
+    <!-- head: 문서 정보 정의 -->
+    <head>
+        <!-- <meta charset="UTF-8"> : HTML 문서에서 허용하는 문자 집합(charset)을 정의하는 메타데이터 태그 -->
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> : 익스플로러(이하IE)의 렌더링 엔질을 강제로 최신 렌더링 엔진으로 지정하는 메타데이터 태그 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> : 기기의 화면 너비에 맞추기 위해 사용하는 메타데이터 태그 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>링크와 이미지 넣기</title>
+    </head>
+    <!-- body : 웹 브라우저에 표시할 내용 -->
+    <body>
+        <h2>a 태그</h2>
+        a 태그는 HTML에서 내부나 외부 링크를 생성<br>
+        대상 경로를 의미하는 href 속성을 필수로 사용해야 함<br>
+        그 외에 target, title 속성을 선택해서 사용할 수 있음
+        <dl>
+            <dt>href 속성</dt>
+            <dd>
+                href 속성은 a 태그로 생성하는 링크의 대상 경로를 입력할 때 사용<br>
+                대상경로 : 주소(URL)이거나 내부 문서의 id 속성값
+            </dd>
+        </dl>
+        <dl>
+            <dt>target 속성</dt>
+            <dd>
+                target 속성은 a 태그로 링크를 생성할 때 대상이 연결되는 방식을 지정<br>
+                속성값 : _blank, _parent, _self, _top<br>
+                생략 가능
+            </dd>
+        </dl>
+        <dl>
+            <dt>title 속성</dt>
+            <dd>
+                title 속성은 링크를 설명할 수 있는 텍스트를 작성<br>
+                생략 가능
+            </dd>
+        </dl>
+        <h4>a 태그를 이용한 도서출판 길벗 홈페이지를 새창으로 연결하는 링크</h4>
+        <a href="https://www.gilbut.co.kr" target="_blank" title="도서출판 길벗">길벗 홈페이지</a>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>img 태그</h2>
+        HTML에서 이미지 객체를 삽입하고 싶을 때 사용<br>
+        img 태그는 src 속성과 alt 속성으로 구성
+        <dl>
+            <dt>src 속성</dt>
+            <dd>
+                src(source)는 삽입하려는 이미지의 경로를 입력하는 속성<br>
+                HTML에서 이미지 경로는 웹 브라우저에서 실행되는 HTML 파일의 위치가 기준<br>
+                ./ : 현재 폴더<br>
+                ../ : 상위 폴더
+            </dd>
+        </dl>
+        <img src="../../image/HCJbook/3_4_2.jpg">
+        <dl>
+            <dt>alt 속성</dt>
+            <dd>
+                alt 속성에는 삽입한 이미지 객체를 설명할 수 있는 텍스트를 넣음<br>
+                웹 표준에서는 src 속성과 alt 속성을 필수로 사용하도록 권고하므로 두 속성은 꼭 넣어야 함
+            </dd>
+        </dl>
+        <img src="../../image/HCJbook/3_4_2.jpg" alt="좋은 배경">
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>이미지 링크</h2>
+        img 태그를 a 태그 안에 사용하면 이미지를 클릭했을 때 특정 링크로 이동하게 할 수 있음<br>
+        이를 HTML에서는 이미지 링크라고 함
+        <a href="https://www.google.com" target="_blank">
+            <img src="../../image/HCJbook/3_4_2.jpg" alt="구글로 이동">
+        </a>
+    </body>
+</html>

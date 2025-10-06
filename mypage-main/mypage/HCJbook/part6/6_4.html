@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>배경 속성으로 요소의 배경 설정하기</title>
+        <style>
+            .background_color1{
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                margin: 10px;
+            }
+            .image1{
+                width: 160px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                margin: 10px;
+            }
+            .image2{
+                width: 80px;
+                height: 60px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                margin: 10px;
+            }
+            .image3{
+                width: 320px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+            }
+            .repeat1{
+                width: 320px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-repeat: no-repeat;
+                border: 1px solid black;
+                margin: 10px;
+            }
+            .size1{
+                width: 320px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-size: auto;
+                background-repeat: no-repeat;
+                border: 1px solid black;
+                margin: 10px;
+            }
+            .size2{
+                width: 320px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+                border: 1px solid black;
+                margin: 10px;
+            }
+            .size3{
+                width: 320px;
+                height: 120px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                border: 1px solid black;
+                margin: 10px;
+            }
+            .size4{
+                width: 80px;
+                height: 60px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-size: 80px 60px;
+                background-repeat: no-repeat;
+                border: 1px solid black;
+                margin: 10px;
+            }
+            .position1{
+                width: 320px;
+                height: 240px;
+                border: 1px solid black;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-repeat: no-repeat;
+                background-position: 100%;
+                margin: 10px;
+            }
+            .parent{
+                width: 320px;
+                height: 240px;
+                border: 1px solid black;
+                overflow: scroll;
+            }
+            .children{
+                height: 2000px;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-attachment: scroll;
+            }
+            .op_all{
+                width: 320px;
+                height: 240px;
+                border: 1px solid black;
+                overflow: scroll;
+            }
+            .op_child{
+                height: 100px;
+                width: 100px;
+                background-color: red;
+                background-image: url('../../image/HCJbook/6_4_2.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+                background-attachment: fixed;
+            }
+            .op_all2{
+                width: 320px;
+                height: 240px;
+                border: 1px solid black;
+                overflow: scroll;
+            }
+            .op_child2{
+                width: 100px;
+                height: 100px;
+                background: red url('../../image/HCJbook/6_4_2.png') no-repeat center/100% 100% fixed;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>background-color 속성</h2>
+        요소의 배경을 넣을 수 있음<br>
+        background-color : <색상값>;<br>
+        <div class="background_color1"></div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background-image 속성</h2>
+        요소의 이미지를 넣을 수 있음<br>
+        이미지의 경로를 url() 함수로 지정<br>
+        <strong>주의사항</strong><br>
+        <strong>첫째</strong> 요소의 배경 크기가 반드시 있어야 한다<br>
+        <strong>둘째</strong> 이미지의 크기가 요소의 배경 크기와 맞지 않으면 어색하게 보임<br>
+        <div class="image1"></div>
+        <div class="image2"></div>
+        <div class="image3"></div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background-repeat 속성</h2>
+        이미지 반복 설정을 바꾸는 속성<br>
+        <table>
+            <caption>background-repeat 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>no-repeat</td>
+                <td>이미지를 반복하지 않습니다</td>
+            </tr>
+            <tr>
+                <td>repeat-x</td>
+                <td>이미지를 가로 방향으로 반복</td>
+            </tr>
+            <tr>
+                <td>repeat-y</td>
+                <td>이미지를 세로 방향으로 반복</td>
+            </tr>
+            <tr>
+                <td>repeat</td>
+                <td>이미지를 가로와 세로 방향으로 반복</td>
+            </tr>
+            <tr>
+                <td>round</td>
+                <td>이미지를 반복하되 이미지가 요소에 딱 맞도록 크기를 자동 조절</td>
+            </tr>
+            <tr>
+                <td>space</td>
+                <td>이미지가 잘리지 않도록 반복</td>
+            </tr>
+        </table>
+        <div class="repeat1"></div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background-size 속성</h2>
+        이미지 크기를 지정해서 처리가능<br>
+        <table>
+            <caption>background-size 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>auto</td>
+                <td>이미지 크기를 유지</td>
+            </tr>
+            <tr>
+                <td>cover</td>
+                <td>이미지의 가로 세로 비율을 유지하면서 크기를 확대하거나 축소해 요소의 배경에 꽉 채움</td>
+            </tr>
+            <tr>
+                <td>contain</td>
+                <td>이미지의 가로 세로 비율을 유지하면서 배경 요소 안에 들어가도록 크기를 확대하거나 축소</td>
+            </tr>
+            <tr>
+                <td><너비 높이></td>
+                <td>이미지 크기를 직접 지정</td>
+            </tr>
+        </table>
+        <div class="size1"></div>
+        <div class="size2"></div>
+        <div class="size3"></div>
+        <div class="size4"></div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background-position 속성</h2>
+        이미지의 위치 조정<br>
+        <table>
+            <caption>background-position 속성값</caption>
+            <tr>
+                <th>위치</th>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>x</td>
+                <td>left, center, right</td>
+                <td>x축(가로) 방향의 위치를 지정</td>
+            </tr>
+            <tr>
+                <td>y</td>
+                <td>top, center, bottom</td>
+                <td>y축(세로) 방향의 위치를 지정</td>
+            </tr>
+            <tr>
+                <td>공통</td>
+                <td>px, rem, em, %</td>
+                <td>위치를 직접 지정</td>
+            </tr>
+        </table>
+        <div class="position1"></div>
+        x축 값만 100%로 지정하면 자동으로 y축 값은 center가 됨<br>
+        100%는 비율에서 가장큰 값이기 때문에 x 축에 사용하면 가장 오른쪽, y 축에 사용하면 가장 아래쪽을 의미<br>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background-attachment 속성</h2>
+        요소에 삽입된 이미지를 스크롤 할 때, 이미지의 작동 방식을 결정<br>
+        <table>
+            <caption>background-attachment 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>local</td>
+                <td>삽입된 이미지가 요소의 웹 브라우저에서 모두 스크롤</td>
+            </tr>
+            <tr>
+                <td>scroll</td>
+                <td>삽입된 이미지가 요소에서는 고정되지만, 웹 브라우저에서는 스크롤</td>
+            </tr>
+            <tr>
+                <td>fixed</td>
+                <td>삽입된 이미지가 웹 브라우저에서 모두 고정</td>
+            </tr>
+        </table>
+        <div class="parent">
+            <div class="children"></div>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>background 속성으로 한 번에 지정하기</h2>
+        background-size 속성만은 항상 background-position 속성값을 먼저 작성하고 나서 슬래시(/)로 구분후 사용해야 함<br>
+        두번째 코드처럼 background 속성으로 한 번에 지정 가능
+        <div class="op_all">
+            <div class="op_child"></div>
+        </div>
+        <div class="op_all2">
+            <div class="op_child2"></div>
+        </div>
+    </body>
+</html>

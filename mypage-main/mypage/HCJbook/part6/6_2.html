@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>텍스트 속성으로 텍스트 꾸미기</title>
+        <style>
+            .fontsize{
+                font-size: 14px;
+            }
+            .max_weight{
+                font-weight: 900;
+            }
+            .min_weight{
+                font-weight: 100;
+            }
+            .lighter_weight{
+                font-weight: lighter;
+            }
+            .normal_weight{
+                font-weight: normal;
+            }
+            .bold_weight{
+                font-weight: bold;
+            }
+            .bolder_weight{
+                font-weight: bolder;
+            }
+            .italic_style{
+                font-style: italic;
+            }
+            .oblique_style{
+                font-style: oblique;
+            }
+            .small_variant{
+                font-variant: small-caps;
+            }
+            .color_text{
+                color: red;
+            }
+            .left_align{
+                text-align: left;
+            }
+            .right_align{
+                text-align: right;
+            }
+            .center_align{
+                text-align: center;
+            }
+            .justify_align{
+                text-align: justify;
+            }
+            .through_line{
+                text-decoration: line-through;
+            }
+            .overline_line{
+                text-decoration: overline;
+            }
+            .underline_line{
+                text-decoration: underline;
+            }
+            .letter{
+                letter-spacing: 15px;
+            }
+            .normal_height{
+                line-height: normal;
+            }
+            .number1_height{
+                line-height: 1;
+            }
+            .number2_height{
+                line-height: 1.5;
+            }
+            .percent_height{
+                line-height: 200%;
+            }
+            .px_height{
+                line-height: 16px;
+            }
+            .lineheight{
+                line-height: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>font-family 속성</h2>
+        속성값으로 글꼴명을 적으면 됨 쉼표(,)로 구분 1개 이상의 글꼴을 나열해 지정 이때 한글로 된 글꼴이나 공백이 있는 글꼴명은 큰따옴표("")로 감싸야 함<br>
+        바탕체 글꼴과 타임스 뉴 로먼 글꼴을 적용하기<br>
+        <strong>font-family: BatangChe, "Times New Roman", serif;</strong><br>
+        <table>
+            <caption>글꼴 유형</caption>
+            <tr>
+                <th>글꼴 유형</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>serif</td>
+                <td>삐침이 있는 명조 계열의 글꼴</td>
+            </tr>
+            <tr>
+                <td>sans-serif</td>
+                <td>삐침이 없고 굵기가 일정한 고딕 계열의 글꼴</td>
+            </tr>
+            <tr>
+                <td>monospace</td>
+                <td>텍스트 폭과 간격이 일정한 글꼴</td>
+            </tr>
+            <tr>
+                <td>fantasy</td>
+                <td>화려한 글꼴</td>
+            </tr>
+            <tr>
+                <td>cursive</td>
+                <td>손으로 쓴 것 같은 필기체 계열의 글꼴</td>
+            </tr>
+        </table>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>font-size 속성</h2>
+        텍스트 크기가 지정된 경우가 아니면 일반적인 텍스트 크기는 16px<br>
+        <p class="fontsize">font-size 속성</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>font-weight 속성</h2>
+        굵기를 나타내는 속성값에는 숫자 표기법과 키워드 표기법을 사용<br>
+        숫자 표기법<br>
+        ▼ ▼ ▼ ▼ ▼ ▼<br>
+        <p class="max_weight">최대 굵기</p>
+        <p class="min_weight">최소 굵기</p>
+        키워드 표기법<br>
+        ▼ ▼ ▼ ▼ ▼ ▼<br>
+        <p class="lighter_weight">lighter</p>
+        <p class="normal_weight">normal</p>
+        <p class="bold_weight">bold</p>
+        <p class="bolder_weight">bolder</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>font-style 속성</h2>
+        font-style 속성은 글꼴의 스타일을 지정할 때 사용<br>
+        <table>
+            <caption>font-style 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>normal</td>
+                <td>기본 형태로 표시</td>
+            </tr>
+            <tr>
+                <td>italic</td>
+                <td>이탤릭체로 표시</td>
+            </tr>
+            <tr>
+                <td>oblique</td>
+                <td>기울임꼴로 표시</td>
+            </tr>
+        </table>
+        <p>normal</p>
+        <p class="italic_style">italic</p>
+        <p class="oblique_style">oblique</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>font-variant 속성</h2>
+        영문 텍스트를 크기가 작은 대문자로 변경할 때 사용<br>
+        <table>
+            <caption>font-variant 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>normal</td>
+                <td>텍스트를 변환하지 않습니다.</td>
+            </tr>
+            <tr>
+                <td>small-caps</td>
+                <td>텍스트를 크기가 작은 대문자로 변환</td>
+            </tr>
+        </table>
+        <p>Lorem ipsum dolor sit.</p>
+        <p class="small_variant">Lorem ipsum dolor sit.</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>color 속성</h2>
+        텍스트의 색상을 지정할 때 사용<br>
+        <p class="color_text">color 속성</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>text-align 속성</h2>
+        텍스트를 정렬할 때 사용<br>
+        <table>
+            <caption>text-align 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>left</td>
+                <td>텍스트를 왼쪽 정렬</td>
+            </tr>
+            <tr>
+                <td>center</td>
+                <td>텍스트를 중앙 정렬</td>
+            </tr>
+            <tr>
+                <td>right</td>
+                <td>텍스트를 오른쪽 정렬</td>
+            </tr>
+            <tr>
+                <td>justify</td>
+                <td>텍스트를 양쪽 정렬</td>
+            </tr>
+        </table>
+        <p class="left_align">왼쪽 정렬</p>
+        <p class="right_align">오른쪽 정렬</p>
+        <p class="center_align">중앙 정렬</p>
+        <p class="justify_align">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, error! Id dolore officiis commodi est ad enim earum magnam possimus
+            assumenda velit qui dignissimos eos nihil mollitia distinctio.
+        </p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>text-decoration 속성</h2>
+        텍스트에 선 긋는 것<br>
+        a 태그에 밑줄을 제거하고 싶으면 text-decoration 속성을 none 값으로 지정하면 됨<br>
+        <table>
+            <caption>text-decoration 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>none</td>
+                <td>텍스트 장식을 모두 지움</td>
+            </tr>
+            <tr>
+                <td>line-through</td>
+                <td>텍스트 중간을 관통하는 선을 그음</td>
+            </tr>
+            <tr>
+                <td>overline</td>
+                <td>텍스트 위에 선을 그음</td>
+            </tr>
+            <tr>
+                <td>underline</td>
+                <td>텍스트 아래에 선을 그음</td>
+            </tr>
+        </table>
+        <p class="through_line">line-through</p>
+        <p class="overline_line">overline</p>
+        <p class="underline_line">underline</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>letter-spacing 속성</h2>
+        자간을 조절할 때 사용<br>
+        자간은 글자 사이의 간격을 말함 normal 또는 크기를 넣을 수 있음<br>
+        <p class="letter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, porro adipisci?</p>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>line-height 속성</h2>
+        텍스트 한 줄의 높이를 지정할 때 사용<br>
+        normal, 숫자, 퍼센트, 크기 넣을 수 있음<br>
+        <table>
+            <caption>line-height 속성값</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>normal</td>
+                <td>웹 브라우저에서 정한 기본값을 적용</td>
+            </tr>
+            <tr>
+                <td>숫자</td>
+                <td>현재 font-size 값에 입력한 숫자를 곱한 값을 적용</td>
+            </tr>
+            <tr>
+                <td>퍼센트</td>
+                <td>현재 font-size 값에 입력한 비율을 곱한 값을 적용</td>
+            </tr>
+            <tr>
+                <td>크기</td>
+                <td>입력한 크기를 적용</td>
+            </tr>
+        </table>
+        <p class="normal_height">normal | 웹 브라우저에서 정한 기본값, 보통 1.2</p>
+        <p class="number1_height">1 | 현재 font-size 값의 1배</p>
+        <p class="number2_height">1.5 | 현재 font-size 값의 1.5배</p>
+        <p class="percent_height">200% | 현재 font-size 값의 2배</p>
+        <p class="px_height">16px</p>
+        <p class="lineheight">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+            Quisquam corrupti sunt inventore distinctio earum quod ea labore nisi accusamus<br>
+            commodi repellat nihil ullam ad in hic, laboriosam incidunt minima eius.<br>
+        </p>
+    </body>
+</html>

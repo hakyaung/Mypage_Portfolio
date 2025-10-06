@@ -1,0 +1,69 @@
+<!-- DTD : 문서형 정의 -->
+<!DOCTYPE html>
+<!-- 형식 : <태그명 속성명="속성값"> -->
+<!-- <html lang="ko"> : 주언어(lang)가 한글(ko)로 된 HTML 문서의 시작 -->
+<!-- html : HTML 문서의 시작과 끝 -->
+<html lang="ko">
+    <!-- head: 문서 정보 정의 -->
+    <head>
+        <!-- <meta charset="UTF-8"> : HTML 문서에서 허용하는 문자 집합(charset)을 정의하는 메타데이터 태그 -->
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> : 익스플로러(이하IE)의 렌더링 엔질을 강제로 최신 렌더링 엔진으로 지정하는 메타데이터 태그 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> : 기기의 화면 너비에 맞추기 위해 사용하는 메타데이터 태그 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>목록 만들기</title>
+    </head>
+    <!-- body : 웹 브라우저에 표시할 내용 -->
+    <body>
+        <h2>ul 태그</h2>
+        ul태그는 순서가 없는 비순서형 목록을 생성할 때 사용<br>
+        이때 목록 내용은 li(list item) 태그로 구성
+        <h1>판매 중인 과일</h1>
+        <ul>
+            <li>바나나</li>
+            <li>사과</li>
+            <li>수박</li>
+        </ul>
+        <h4>ul 태그를 사용하면 목록 내용마다 글머리 기호(bullet point)가 붙습니다.</h4>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>ol 태그</h2>
+        ol 태그는 순서형 목록을 생성할 때 사용<br>
+        ul 태그와 마찬가지로 li 태그로 목록 내용을 구성
+        <h1>오늘 할일</h1>
+        <ol>
+            <li>아침 먹기</li>
+            <li>점심 먹기</li>
+            <li>저녁 먹기</li>
+        </ol>
+        <h4>ol 태그를 사용하면 목록 내용에 번호가 붙습니다.</h4>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>dl 태그</h2>
+        dl 태그는 정의형 목록을 만들 때 사용<br>
+        정의형 목록 : 용어와 용어 설명을 나열한 형태의 목록<br>
+        dl 태그로 목록을 생성시 li 태그 대신 dt(description term) 태그로 용어를, dd(description details) 태그로 용어 설명을 작성
+        <h4>형식</h4>
+        <dl>
+            <dt>용어 1</dt>
+            <dd>용어 설명 1</dd>
+            <dt>용어 n</dt>
+            <dd>용어 설명 n</dd>
+        </dl>
+
+        <h4>예제</h4>
+        <dl>
+            <dt>HTML</dt>
+            <dd>HTML은 Hyper Text Markup Language의 약자로 웹 문서의 구조를 설계하기 위한 목적으로 개발된 언어</dd>
+            <dt>CSS</dt>
+            <dd>CSS는 Cascading Style Sheets의 약자로 웹 문서를 꾸미기 위한 목적으로 개발된 언어</dd>
+        </dl>
+    </body>
+</html>

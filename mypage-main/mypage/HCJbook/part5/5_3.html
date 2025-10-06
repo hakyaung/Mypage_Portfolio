@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>가상 요소 선택자 사용하기</title>\
+        <style>
+            p::before{
+                content: '<before>';
+                color:red;
+            }
+            p::after{
+                content: '<after>';
+            }
+        </style>
+    </head>
+    <body>
+        HTML 문서에 명시적으로 작성된 구성 요소는 아니지만, 마치 존재하는 것처럼 취급해 선택하는 선택자 지정 방법<br>
+        앞에 :: 기호(콜론 2개)를 붙여서 사용<br>
+        <strong>기준 선택자 :: 가상 요소 선택자{/* CSS 코드 */}</strong>
+        <table>
+            <caption>가상 요소 선택자</caption>
+            <tr>
+                <th>종류</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>::before</td>
+                <td>콘텐츠 앞의 공간을 선택</td>
+            </tr>
+            <tr>
+                <td>::after</td>
+                <td>콘텐츠 뒤의 공간을 선택</td>
+            </tr>
+        </table>
+        <br><br><br>
+        <p>Lorem, ipsum dolor.</p>
+    </body>
+</html>

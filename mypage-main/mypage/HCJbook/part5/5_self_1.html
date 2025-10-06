@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>5장 셀프체크 1번</title>
+        <style>
+            .part1 p{
+                color: red;
+            }
+            .part2 #title{
+                color: blue;
+            }
+            .part3 .box#title2{
+                color: yellow;
+            }
+            .part4 > section div{
+                color: blue;
+            }
+            .part5 > label + input{
+                color: red;
+            }
+            .part6 > a span{
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>1. p태그를 모두 선택합니다.</h2>
+        <div class="part1">
+            <p>lorem 1</p>
+            <p>lorem 2</p>
+            <p>lorem 3</p>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>2. id 속성값이 title인 태그를 선택합니다.</h2>
+        <div class="part2">
+            <div id="title">
+                yeah
+            </div>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>3. class 속성값이 box 이면서 id 속성값이 title2인 태그를 선택합니다.</h2>
+        <div class="part3">
+            <div class="box" id="title2">
+                yeah2
+            </div>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>4. section 태그의 하위에 있는 모든 div 태그를 선택합니다.</h2>
+        <div class="part4">
+            <section>
+                <div>
+                    div1
+                </div>
+                <div>
+                    div2
+                </div>
+                <div>
+                    div3
+                </div>
+            </section>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>5. label 태그와 인접한 형제 관계인 input 태그를 선택합니다.</h2>
+        <div class="part5">
+            <label>label 1</label>
+            <input type="text">
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>6. 링크 대상 경로가 https://www.naver.com 인 a 태그의 하위에 있는 span 태그를 모두 선택합니다.</h2>
+        <div class="part6">
+            <a href="https://www.naver.com" target="_blank"><span>NAVER LINK</span><span>yeah</span></a>
+        </div>
+    </body>
+</html>

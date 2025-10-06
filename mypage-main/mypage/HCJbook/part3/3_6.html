@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>폼 구성하기</title>
+    </head>
+    <body>
+        <h2>form 태그</h2>
+        form 태그는 폼 양식을 의미하는 태그<br>
+        form 태그는 action과 method 속성을 함께 사용
+        <form action="서버 URL" method="get(보안이 요구되지 않는 정보) 또는 post(보안이 요구되는 정보)"></form>
+        <dl>
+            <dt><strong>action 속성</strong></dt>
+            <dd>
+                action 속성에는 폼 요소에서 사용자와 상호작용으로 입력받은 값들을 전송할 서버의 URL 주소를 적는다
+            </dd>
+            <dt><strong>method 속성</strong></dt>
+            <dd>
+                method 속성에는 입력받은 값을 서버에 전송할 때 송신 방식을 적음
+            </dd>
+        </dl>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>input 태그</h2>
+        로그인 페이지의 아이디와 비밀번호처럼 입력받는 요소를 생성할 때 input 태그를 사용<br>
+        input 태그에는 type, name, value 속성이 있는데, <br>
+        type 속성은 필수로 사용, name과 value 속성은 선택
+        <h4>형식</h4>
+        <input type="종류" name="이름" value="초깃값">
+        <table>
+            <caption>type 속성</caption>
+            <tr>
+                <th>속성값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>text</td>
+                <td>한 줄 텍스트를 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>비밀번호를 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>tel</td>
+                <td>전화번호 형식을 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>number</td>
+                <td>숫자만 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td>URL 주소 형식을 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>search</td>
+                <td>검색용 텍스트를 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>이메일 형식을 입력할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>checkbox</td>
+                <td>체크박스 요소를 생성</td>
+            </tr>
+            <tr>
+                <td>radio</td>
+                <td>라디오버트 요소 생성</td>
+            </tr>
+            <tr>
+                <td>file</td>
+                <td>파일 업로드 요소를 생성</td>
+            </tr>
+            <tr>
+                <td>button</td>
+                <td>버튼 요소 생성</td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td>이미지로 버튼 요소 생성, src 속성 필요, alt 속성은 필요 없음</td>
+            </tr>
+            <tr>
+                <td>hidden</td>
+                <td>사용자 눈에 보이지 않는 입력 요소를 생성</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>날짜(연,월,일)를 선택할 수 있는 입력 요소 생성</td>
+            </tr>
+            <tr>
+                <td>datetime-local</td>
+                <td>사용자 시간대에 맞는 날짜(연,월,일,시,분)를 선택할 수 있는 입력 요소 생성</td>
+            </tr>
+            <tr>
+                <td>month</td>
+                <td>날짜(연,월)를 선택할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>week</td>
+                <td>날짜(연,주차)를 선택할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>time</td>
+                <td>시간을 선택할 수 있는 입력 요소 생성</td>
+            </tr>
+            <tr>
+                <td>range</td>
+                <td>숫자 범위를 선택할 수 있는 슬라이드 요소 생성</td>
+            </tr>
+            <tr>
+                <td>color</td>
+                <td>색상을 선택할 수 있는 요소 생성</td>
+            </tr>
+            <tr>
+                <td>submit</td>
+                <td>폼 전송 역할을 하는 버튼 요소 생성</td>
+            </tr>
+            <tr>
+                <td>reset</td>
+                <td>폼 요소에 사용자가 입력한 값을 초기화하는 버튼 요소 생성</td>
+            </tr>
+        </table>
+        <h4>type 속성값을 적용한 예제</h4>
+        <input type="text">
+        <input type="password">
+        <input type="tel">
+        <input type="number">
+        <input type="url">
+        <input type="search">
+        <input type="email">
+        <input type="checkbox">
+        <input type="radio">
+        <input type="file">
+        <input type="button">
+        <input type="image" src="../../image/HCJbook/3_4_2.jpg">
+        <input type="hidden">
+        <input type="date">
+        <input type="datetime-local">
+        <input type="month">
+        <input type="week">
+        <input type="time">
+        <input type="range">
+        <input type="color">
+        <input type="submit">
+        <input type="reset">
+        <dl>
+            <dt>name 속성</dt>
+            <dd>
+                name 속성에는 입력 요소의 이름을 작성
+            </dd>
+            <dt>value 속성</dt>
+            <dd>
+                value 속성에는 입력 요소의 초깃값을 작성
+            </dd>
+        </dl>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>label 태그</h2>
+        label 태그는 form 태그 안에서 사용하는 상호작용 요소에 이름을 붙일 때 사용<br>
+        시각 장애인이 웹을 탐색할 때 사용하는 보조 도구인 스크린 리더기가 label 태그로 연결된 상호작용 요소를 쉽게 식별할 수 있음<br>
+        웹 접근성 향상을 위해서도 필수로 사용하길 권장<br>
+        label 태그에는 사용 방법에 따라 암묵적인 방법과 명시적인 방법으로 구분<br>
+        <h4>암묵적 방법</h4>
+        label 태그에 상호작용 요소를 포함하는 방법<br>
+        <label>
+            아이디
+            <input type="text"> <!-- 상호작용 요소 -->
+        </label>
+        <h4>명시적인 방법</h4>
+        label 태그의 for 속성과 상호작용 요소의 id 속성을 같은 값으로 설정하는 방법<br>
+        <label for="userpw">비밀번호</label>
+        <input type="password" id="userpw"> <!-- for 속성값과 id 속성값이 같아야 함 -->
+        <h4>암묵적 방법 + 명시적 방법</h4>
+        <label for="username"> <!-- for 속성값과 id 속성값이 같음-->
+            <input type="text" id="username">이름 <!-- 상호작용 요소 -->
+        </label>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>fieldset과 legend 태그</h2>
+        fieldset 태그로 그룹을 지을 수 있으며 그룹을 지을 경우 그룹별로 박스 모양의 테두리가 생김<br>
+        이렇게 그룹 지어진 요소들은 legend 태그로 이름을 붙일 수 있음
+        <form>
+            <fieldset>
+                <legend>기본 정보</legend>
+                <p>
+                    <label for="userid">아이디</label>
+                    <input type="text" id="userid">
+                </p>
+                <p>
+                    <label for="passwd">비밀번호</label>
+                    <input type="password" id="passwd">
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>선택 정보</legend>
+                <p>
+                    <label for="age">나이</label>
+                    <input type="number" id="age">
+                </p>
+                <p>
+                    <label for="recommender">추천인</label>
+                    <input type="text" id="recommender">
+                </p>
+            </fieldset>
+        </form>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>textarea 태그</h2>
+        여러 줄의 입력 요소를 생성할 때 사용
+        <form action="#" method="post">
+            <fieldset>
+                <legend>블로그 글쓰기</legend>
+                <p>
+                    <label for="title">제목
+                        <input type="text" id="title" name="title">
+                    </label>
+                </p>
+                <p>
+                    <label for="desc">내용
+                        <textarea id="desc" name="desc"></textarea>
+                    </label>
+                </p>
+            </fieldset>
+        </form>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>select, option, optgroup 태그</h2>
+        select 태그를 사용하여 콤보박스(combobox) 생성<br>
+        option 태그를 사용하여 콤보박스에 항목 하나를 추가<br>
+        optgroup 태그를 사용하여 항목들을 그룹으로 묶음<br>
+        <br>
+        <select name="city" id="city">
+            <option value="강북구">강북구</option>
+            <option value="강남구">강남구</option>
+            <option value="서초구">서초구</option>
+            <option value="중원구">중원구</option>
+            <option value="분당구">분당구</option>
+        </select>
+        <h4>optgroup 태그로 관련 있는 항목을 그룹 지음</h4>
+        <select name="city" id="city">
+            <optgroup label="서울시">
+                <option value="강북구">강북구</option>
+                <option value="강남구">강남구</option>
+                <option value="서초구">서초구</option>
+            </optgroup>
+            <optgroup label="경기도 성남시">
+                <option value="중원구">중원구</option>
+                <option value="분당구">분당구</option>
+            </optgroup>
+        </select>
+        <dl>
+            <dt>size 속성</dt>
+            <dd>
+                size 속성은 콤보박스에서 화면에 노출되는 항목 개수를 지정하는 속성<br>
+                속성값으로 숫자를 적으면 되고, 생략할 경우 기본으로 1개 항목이 표시됨
+            </dd>
+        </dl>
+        <select name="city" id="city" size="3">
+            <optgroup label="서울시">
+                <option value="강북구">강북구</option>
+                <option value="강남구">강남구</option>
+                <option value="서초구">서초구</option>
+            </optgroup>
+            <optgroup label="경기도 성남시">
+                <option value="중원구">중원구</option>
+                <option value="분당구">분당구</option>
+            </optgroup>
+        </select>
+        <dl>
+            <dt>multiple 속성</dt>
+            <dd>
+                여러 항목을 동시에 선택할 수 있게 해줌<br>
+                콤보박스에서 항목 하나를 선택한 상태로 Ctrl 을 누르고 다른 항목을 클릭
+            </dd>
+        </dl>
+        <select name="city" id="city" multiple>
+            <optgroup label="서울시">
+                <option value="강북구">강북구</option>
+                <option value="강남구">강남구</option>
+                <option value="서초구">서초구</option>
+            </optgroup>
+            <optgroup label="경기도 성남시">
+                <option value="중원구">중원구</option>
+                <option value="분당구">분당구</option>
+            </optgroup>
+        </select>
+        <dl>
+            <dt>selected 속성</dt>
+            <dd>
+                selected 속성을 사용하면 기본 선택 항목을 변경할 수 있음
+            </dd>
+        </dl>
+        <select name="city" id="city">
+            <option value="강북구">강북구</option>
+            <option value="강남구">강남구</option>
+            <option value="서초구" selected>서초구</option>
+            <option value="중원구">중원구</option>
+            <option value="분당구">분당구</option>
+        </select>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>button 태그</h2>
+        input 태그에서 type 속성값을 submit, reset, button 으로 생성가능하지만<br>
+        button 태그로 별도의 버튼 생성 가능<br>
+        type 속성값<br>
+        submit : 폼을 서버에 전송할 목적<br>
+        reset : 상호작용 요소에 입력된 내용을 초기화<br>
+        button : 단순한 버튼<br>
+        <button type="submit">
+            <img src="../../image/HCJbook/3_6_7.png" alt="버어어어튼">
+            크으으으은 버어어어튼
+        </button>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>폼 관련 태그에서 사용할 수 있는 추가 속성</h2>
+        폼 관련 태그에서 공통으로 사용할 수 있는 몇 가지 속성들<br>
+        <dl>
+            <dt><strong>disabled 속성</strong></dt>
+            <dd>
+                disabled 속성은 상호작용 요소를 비활성화하며, <br>
+                input, textarea, select, button 태그에 사용 가능<br>
+                <input type="text" disabled>
+                <button type="button" disabled>비활성</button>
+            </dd>
+            <dt><strong>readonly 속성</strong></dt>
+            <dd>
+                readonly 속성은 상호작용 요소를 읽기 전용으로 변경<br>
+                읽기 전용이 되면 텍스트 입력 불가능<br>
+                요소 선택, 드래그, 내용 복사 가능<br>
+                textarea 태그, input 태그(type 속성값 : text, search, url, tel, email, password, date, month, week, time, datetime-local, number) 사용 가능<br>
+                <input type="password" readonly><br>
+                <textarea readonly>불라불라불라</textarea>
+            </dd>
+            <dt><strong>maxlength 속성</strong></dt>
+            <dd>
+                maxlength 속성은 입력할 수 있는 글자 수를 제한<br>
+                textarea 태그, input 태그(type 속성값 : text, search, url, tel, email, password, date, month, week, time, datetime-local, number) 사용가능<br>
+                <input type="url" maxlength="4"><br>
+                <textarea maxlength="4"></textarea>
+            </dd>
+            <dt><strong>checked 속성</strong></dt>
+            <dd>
+                checked 속성은 요소를 선택된 상태로 표시<br>
+                input 태그(type 속성값 : checkbox, radio) 사용가능<br>
+                <fieldset>
+                    <legend>좋아하는 과일</legend>
+                    <input type="checkbox" id="banana" name="banana" value="banana">
+                    <label for="banana">banana</label><br>
+                    <input type="checkbox" id="apple" name="apple" value="apple">
+                    <label for="apple">apple</label><br>
+                    <input type="checkbox" id="orange" name="orange" value="orange" checked>
+                    <label for="orange">orange</label><br>
+                </fieldset>
+            </dd>
+            <dt><strong>placeholder 속성</strong></dt>
+            <dd>
+                placeholder 속성은 입력 요소에 어떠한 값을 입력하면 되는지 힌트를 적는 용도로 사용<br>
+                <input type="tel" placeholder="전화번호를 입력해 주세요.">
+            </dd>
+        </dl>
+    </body>
+</html>

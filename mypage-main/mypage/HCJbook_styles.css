@@ -1,0 +1,10 @@
+#list{
+    float: left;
+}
+#list > li{
+    font-size: 20px;
+    margin-top: 20px;
+}
+#list > ul > li:hover{
+    background-color: chocolate;
+}

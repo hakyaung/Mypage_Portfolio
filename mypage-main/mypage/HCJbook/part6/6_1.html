@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS의 특징 살펴보기</title>
+        <style>
+            html{
+                font-size: 1rem;
+            }
+            .apply1 > h1{
+                font-size: 16px;
+                font-weight: normal;
+            }
+            .apply2 > p{
+                color: red;
+            }
+            .apply2 > p{
+                color: blue;
+            }
+            .apply2 > p{
+                color: orange;
+            }
+            .apply3 .title{
+                color: blue;
+            }
+            .apply3 h1{
+                color: red;
+            }
+            #sub p{
+                color: blue !important;
+            }
+            #main #sub .title{
+                color: red;
+            }
+            .inherit{
+                color: red;
+            }
+            .parent{
+                font-size: 16px;
+            }
+            .child_1{
+                font-size: 80%;
+            }
+            .ctc_1{
+                font-size: 80%;
+            }
+            .child_2{
+                font-size: 2em;
+            }
+            .ctc_2{
+                font-size: 2em;
+            }
+            .parent_2{
+                font-size: 1rem;
+            }
+            .child_3{
+                font-size: 2rem;
+            }
+            .parent_3{
+                font-size: 1vw;
+            }
+            .child_4{
+                font-size: 2vw;
+            }
+            .parent_4{
+                font-size: 1vh;
+            }
+            .child_5{
+                font-size: 2vh;
+            }
+            .keyward{
+                color: red;
+            }
+            .rgbacolor{
+                color: rgba(255,0,0,0.2);
+            }
+            .hexcolor{
+                color: #335533;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>기본 스타일 시트</h2>
+        hn 태그가 각각 다르게 표시된 이유는 웹 브라우저 자체에 기본 스타일 시트가 내장되어 있기 때문<br>
+        따라서 웹 브라우저에 내장된 기본 스타일 시트에 영향을 받아 크기와 굵기가 각각 다르게 표시됨<br>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>적용 우선순위와 개별성</h2>
+        몇 개의 태그는 이미 스타일이 적용된 상태로 표시됨<br>
+        여기에 사용자가 별도로 스타일 속성을 정의하면 정의한 스타일 속성이 적용된 상태로 표시됨<br>
+        즉 기본 스타일 시트에 정의된 스타일 속성보다 사용자가 정의한 스타일 속성이 우선 적용됨을 의미<br>
+        ▼   ▼   ▼<br>
+        <div class="apply1">
+            <h1>h1 tag</h1>
+        </div>
+        같은 태그 요소의 선택자가 여럿일 때도 한 속성만 적용되는 이유<br>
+        <strong>단계적 적용</strong>: 같은 태그에 여러 스타일이 적용되더라도 단계적으로 적용되어 결국 마지막에 영향을 주는 하나의 스타일만 적용된 다는 뜻<br>
+        ▼   ▼   ▼<br>
+        <div class="apply2">
+            <p>specificity</p>
+        </div>
+        <table>
+            <caption>개별성 규칙의 점수</caption>
+            <tr>
+                <th>선택자</th>
+                <th>예</th>
+                <th>점수</th>
+            </tr>
+            <tr>
+                <td>전체 선택자</td>
+                <td>*</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>태그 선택자</td>
+                <td>div, p, h1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>가상 요소 선택자</td>
+                <td>::before, ::after</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>클래스 선택자</td>
+                <td>.box, .title</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>가상 클래스 선택자</td>
+                <td>:hover, :visited, :link</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>아이디 선택자</td>
+                <td>#title, #main</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>인라인 스타일</td>
+                <td>style="color:red"</td>
+                <td>1,000</td>
+            </tr>
+        </table>
+        <div class="apply3">
+            <h1 class="title">h1</h1>
+        </div>
+        <strong>!important</strong> 점수 : 10,000점 비교적 점수가 높은 아이디 선택자와 클래스 선택자에 인라인 조합이 사용되어도 다른 선택자를 모두 압도하고 이 스타일이 우선 적용됨<br>
+        <div id="main">
+            <div id="sub">
+                <p class="title1" style="color: green">important</p>
+            </div>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>상속</h2>
+        부모 요소에 적용된 스타일을 자식 요소가 그대로 물려받아 적용되는 현상<br>
+        <div class="inherit">
+            <p>inherit</p>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>단위</h2>
+        단위는 절대 단위와 상대 단위로 나뉨<br>
+        <strong>절대 단위</strong> 어떤 환경이라도 동일한 크기로 보이는 단위<br>
+        <strong>상대 단위</strong> 부모 요소 또는 웹 브라우저의 창 크기에 따라 상대적으로 결정되는 단위<br>
+        <dl>
+            <dt>절대 단위</dt>
+            <dd>
+                절대 단위는 <strong>px(pixel)</strong> 한 가지
+            </dd>
+            <dt>상대 단위</dt>
+            <dd>
+                CSS에서 자주 사용하는 단위 단위는 다음과 같음<br>
+                <table>
+                    <caption>상대 단위</caption>
+                    <tr>
+                        <th>단위</th>
+                        <th>설명</th>
+                    </tr>
+                    <tr>
+                        <td>%</td>
+                        <td>해당 속성의 상위 요소 속성값에 상대적인 크기를 가짐</td>
+                    </tr>
+                    <tr>
+                        <td>em</td>
+                        <td>
+                            부모 요소의 텍스트 크기에 상대적인 크기를 가짐<br>
+                            (만약 값을 2em 으로 지정했다면 자식 요소의 크기는 부모 요소의 font-size 속성값의 2배가 된다)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>rem</td>
+                        <td>
+                            html 태그의 텍스트 크기에 상대적인 크기를 가짐<br>
+                            (1rem 은 html 태그의 텍스트 크기의 1배<br>
+                            1rem = 16px)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>vw</td>
+                        <td>
+                            뷰포트의 너비를 기준으로 상대적인 크기를 가짐<br>
+                            (웹 브라우저의 창의 너비가 뷰포트 너비가 됨<br>
+                            1vw는 뷰포트 너비의 1/100 크기를 의미) 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>vh</td>
+                        <td>
+                            뷰포트의 높이를 기준으로 상대적인 크기를 가짐<br>
+                            (1vh는 뷰포트 높이의 1/100 크기를 의미)
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+        </dl>
+        <div class="parent">
+            <div class="child_1">
+                font-size 80% | 16px(부모 font-size 크기) * 0.8 = 12.8px
+                <div class="ctc_1">
+                    font-size 80% | 12.8px(부모 font-size 크기) * 0.8 = 10.24px
+                </div>
+            </div>
+            <div class="child_2">
+                font-size 2em | 16px(부모 font-size 크기) * 2em = 32px
+                <div class="ctc_2">
+                    font-size 2em | 32px(부모 font-size 크기) * 2em = 64px
+                </div>
+            </div>
+        </div>
+        <div class="parent_2">
+            font-size 1rem | 16px * 1rem = 16px
+            <div class="child_3">
+                font-size 2rem | 16px * 2rem = 32px
+            </div>
+        </div>
+        <div class="parent_3">
+            font-size 1vw | 900px * 1/100 = 9px
+            <div class="child_4">
+                font-size 2vw | 900px * 2/100 = 18px
+            </div>
+        </div>
+        <div class="parent_4">
+            font-size 1vh | 400px * 1/100 = 4px
+            <div class="child_5">
+                font-size 2vh | 400px * 2/100 = 8px
+            </div>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>색상 표기법</h2>
+        <dl>
+            <dt>키워드 표기법</dt>
+            <dd>
+                색상의 영문명을 속성값으로 사용하는 방법<br>
+                color : red;
+                <p class="keyward">COLOR : RED</p>
+            </dd>
+            <dt>RGB 색상 표기법</dt>
+            <dd>
+                Red, Green, Blue, alpha(투명도를 의미)<br>
+                rgb나 rgba 형식은 RGB 값을 0~255로 표기<br>
+                alpha 값은 0부터 1 사이의 소수점으로 표기 .1로 표기 가능
+                rgb(red, green, blue)
+                rgba(red, green, blue, alpha)
+                <h1 class="rgbacolor">RGBA color</h1>
+            </dd>
+            <dt>HEX 표기법</dt>
+            <dd>
+                Red, Green, Blue 에 해당하는 값을 각각 16진수로 변환해 00~ff 로 나타내는 표기법<br>
+                16진수 표기법이라고도 함<br>
+                #RRGGBB
+                <h1 class="hexcolor">HEX COLOR</h1>
+            </dd>
+        </dl>
+    </body>
+</html>

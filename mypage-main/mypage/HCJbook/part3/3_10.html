@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>태그 종류에 상관없이 사용하는 글로벌 속성</title>
+    </head>
+    <body>
+        <strong>글로벌 속성 : 태그 종류 상관없이 모든 태그에서 공통으로 사용할 수 있는 속성</strong>
+        <table>
+            <col style="width: 100px">
+            <col style="width: 200px">
+            <col style="width: 800px">
+            <caption>자주 사용하는 글로벌 속성</caption>
+            <tr>
+                <th>속성</th>
+                <th>값</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>class</td>
+                <td>value</td>
+                <td>요소에 클래스 값을 지정, 클래스 값은 CSS에서 클래스 선택자로 활용</td>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>value</td>
+                <td>요소에 아이디 값을 지정, 아이디 값은 CSS에서 아이디 선택자로 활용</td>
+            </tr>
+            <tr>
+                <td>style</td>
+                <td>style</td>
+                <td>요소에 인라인 스타일을 지정</td>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>text</td>
+                <td>
+                    요소에 추가 정보를 지정, 마우스를 요소 위에 올리면 툴팁(tooltip)으로 추가 정보가 표시됨<br>
+                    툴팁은 요소에 마우스 커서를 올렸을 때 추가 설명이 뜨는 말풍선 형태의 그래픽 요소를 말함
+                </td>
+            </tr>
+            <tr>
+                <td>lang</td>
+                <td>language code</td>
+                <td>요소에 사용한 텍스트의 언어 정보를 지정</td>
+            </tr>
+            <tr>
+                <td>hidden</td>
+                <td>hidden</td>
+                <td>요소를 화면에서 감춤</td>
+            </tr>
+            <tr>
+                <td>data-*</td>
+                <td>value</td>
+                <td>사용자가 임의의 속성을 만듦</td>
+            </tr>
+        </table>
+        <br><br><br>
+        <dl>
+            <dt><strong>class 속성</strong></dt>
+            <dd>
+                class 속성은 요소에 클래스명을 지정할 때 사용<br>
+                클래스명은 CSS에서 클래스 선택자로 활용<br>
+                여러 요소가 중복해서 가질 수 있음
+            </dd>
+            <br><br>
+            <dt><strong>id 속성</strong></dt>
+            <dd>
+                id 속성은 요소에 아이디를 지정할 때 사용<br>
+                아이디는 CSS에서 아이디 선택자로 활용<br>
+                중복될 수 없음
+            </dd>
+            <br><br>
+            <dt><strong>style 속성</strong></dt>
+            <dd>
+                style 속성은 CSS 코드를 인라인으로 작성할 때 사용
+            </dd>
+            <br><br>
+            <dt><strong>title 속성</strong></dt>
+            <dd>
+                title 속성은 요소에 추가 정보를 넣을 때 사용<br>
+                title 속성에 넣은 값은 요소에 마우스를 올리면 툴팁으로 표시
+                <p>
+                    <span title="World Wide Web Consortium">W3C</span>는 국제 웹 표준 개발 기구입니다.
+                </p>
+            </dd>
+            <br><br>
+            <dt><strong>lang 속성</strong></dt>
+            <dd>
+                lang 속성은 요소에 사용한 텍스트의 언어 코드를 지정할 때 사용<br>
+                일반적으로 HTML 문서의 언어 코드는 html 태그의 lang 속성에 작성<br>
+                <p lang="de">Guten Morgen</p>
+            </dd>
+            <br><br>
+            <dt><strong>data-* 속성</strong></dt>
+            <dd>
+                data-* 속성은 커스텀 속성을 만듦<br>
+                HTML에는 data-name 과 data-hero 라는 속성이 존재하지 않지만, 다음 코드처럼 data-* 속성으로 새로 만들 수 있음<br>
+                <p data-name="spiderMan" data-hero="true">spiderMan is true</p>
+            </dd>
+        </dl>
+    </body>
+</html>

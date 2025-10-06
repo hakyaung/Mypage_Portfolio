@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>마무리</title>
+        <style>
+            ol > li{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <ol>
+            <li>선택자</li>
+            선택자는 CSS 속성을 적용할 대상을 선택하는 문법으로, 다양한 종류의 선택자를 지원
+            <li>기본 선택자</li>
+            <ol>
+                <li><strong>전체 선택자</strong> 모든 태그를 선택자로 지정</li>
+                <li><strong>태그 선택자</strong> 태그명으로 선택자를 지정</li>
+                <li><strong>아이디 선택자</strong> id 속성값으로 선택자를 지정</li>
+                <li><strong>클래스 선택자</strong> class 속성값으로 선택자를 지정</li>
+                <li><strong>기본 속성 선택자</strong> HTML 태그에서 사용할 수 있는 속성과 값으로 선택자를 지정</li>
+                <li><strong>문자열 속성 선택자</strong> 태그의 속성값이 특정한 문자열과 일치하는 요소를 선택자로 지정</li>
+            </ol>
+            <li>조합 선택자</li>
+            조합 선택자는 기본 선택자와 조합해서 사용했을 때 선택자의 의미를 더 풍부하게 하는 역할
+            <ol>
+                <li><strong>그룹 선택자</strong> 여러 선택자를 , 기호로 구분해 선택자를 그룹으로 묶어 지정</li>
+                <li><strong>자식 선택자</strong> 선택자 범위를 자식 관계로 제한 > 기호를 구븐자로 사용</li>
+                <li><strong>하위 선택자</strong> 선택자 범위를 자식 및 자손 관계로 제한 공백을 구분자로 사용</li>
+                <li><strong>인접 형제 선택자</strong> 특정 태그와 가장 인접한 형제 관계 태그를 선택자로 지정 + 기호를 구분자로 사용</li>
+                <li><strong>일반 형제 선택자</strong> 특정 태그와 형제 관계에 있는 모든 태그를 선택자로 지정 ~ 기호를 구분자로 사용</li>
+            </ol>
+            <li>가상 요소 선택자</li>
+            실제로 존재하는 요소는 아니지만, 존재한다고 가정하고 선택하는 방법<br>
+            선택자 앞에는 ::(콜론 2개)를 붙임
+            <ol>
+                <li><strong>::before</strong> 요소의 맨 앞 선택</li>
+                <li><strong>::after</strong> 요소의 맨 뒤 선택</li>
+            </ol>
+            <li>가상 클래스 선택자</li>
+            가상 클래스 선택자는 요소의 상태를 이용해 선택자를 지정<br>
+            선택자 앞에는 : 기호를 붙임
+            <ol>
+                <li>링크 가상 클래스 선택자</li>
+                <ul>
+                    <li><strong>:link</strong> 링크를 한 번도 방문한 적 없는 상태</li>
+                    <li><strong>:visited</strong> 링크를 한 번 이상 방문한 적이 있는 상태</li>
+                </ul>
+                <li>동적 가상 클래스 선택자</li>
+                <ul>
+                    <li><strong>:hover</strong> 마우스를 올린 상태</li>
+                    <li><strong>:active</strong> 마우스로 클릭한 상태</li>
+                </ul>
+                <li>입력 요소 가상 클래스 선택자</li>
+                <ul>
+                    <li><strong>:focus</strong> 입력 요소에 커서가 활성화된 상태</li>
+                    <li><strong>:checked</strong> 체크박스 요소에 체크한 상태</li>
+                    <li><strong>:disabled</strong> 상호작용 요소가 비활서화된 상태</li>
+                    <li><strong>:enabled</strong> 상호작용 요소가 활성화된 상태</li>
+                </ul>
+                <ol>구조적 가상 클래스 선택자</ol>
+                <ul>
+                    <li><strong>:first-child, :last-child</strong> 첫 번째 자식 태그와 마지막 자식 태그</li>
+                    <li><strong>:nth-child(n), :nth-last-child(n)</strong> n번째 자식 태그와 끝에서 n번째 자식 태그</li>
+                    <li><strong>:nth-of-type(n), :nth-last-of-type(n)</strong> n번째 특정 자식 태그와 끝에서 n번째 특정 자식 태그</li>
+                    <li><strong>:first-of-type, :last-of-type</strong> 부모의 첫 번째 특정 자식 태그와 마지막 특정 자식 태그</li>
+                </ul>
+            </ol>
+        </ol>
+    </body>
+</html>

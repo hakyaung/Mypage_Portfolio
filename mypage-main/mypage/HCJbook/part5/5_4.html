@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>가상 클래스 선택자 사용하기</title>
+        <style>
+            a:link{ /* 한 번도 방문한 적이 없는 링크 */
+                color: orange;
+            }
+            a:visited{ /* 한 번이라도 방문한 적이 있는 링크 */
+                color: green;
+            }
+            .malloc_class > p:hover{
+                color: red;
+            }
+            button:active{
+                color: red;
+            }
+            input:focus{
+                color: red;
+            }
+            input:checked + label{
+                color: blue;
+            }
+            input:disabled, button:disabled{
+                background-color: #ccc;
+            }
+            .enabled_text > input:enabled, button:enabled{
+                background-color: #ccc;
+            }
+            .first-last-child-test > ul > li:first-child{
+                color: red;
+            }
+            .first-last-child-test > ul > li:last-child{
+                color: red;
+            }
+            .nth-child-test1 p:nth-child(1){
+                color: red;
+            }
+            .nth-child-test2 p:nth-last-child(2){
+                color: blue;
+            }
+            .nth_of_type_test p:nth-of-type(1){
+                color: yellow;
+            }
+            .nth_of_type_test p:nth-last-of-type(1){
+                color: blue;
+            }
+            .first_of_type_test p:first-of-type{
+                color: red;
+            }
+            .first_of_type_test p:last-of-type{
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        가상 클래스 선택자는 요소의 상태를 이용해 선택자를 지정하는 방법<br>
+        <strong>기준 요소:가상 클래스 선택자{/* CSS 코드 */}</strong><br>
+        가상 클래스 선택자는 매우 많음 자주 사용하는 가상클래스 선택자를 소개<br>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>링크 가상 클래스 선택자</h2>
+        a 태그에서 발생할 수 있는 링크 상태를 이용해 선택하는 방법<br>
+        <table>
+            <caption>링크 가상 클래스 선택자</caption>
+            <tr>
+                <th>종류</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>:link</td>
+                <td>한 번도 방문하지 않은 링크일 때 선택</td>
+            </tr>
+            <tr>
+                <td>:visited</td>
+                <td>한 번이라도 방문한 적이 있는 링크일 때 선택</td>
+            </tr>
+        </table>
+        <a href="#">리이이이이이이잉이ㅣ잉크1</a><br>
+        <a href="#">리이이이이이이잉이ㅣ잉크2</a><br>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>동적 가상 클래스 선택자</h2>
+        동적으로 변하는 상태를 이용해 선택자를 지정하는 방법<br>
+        <table>
+            <caption>동적 가상 클래스 선택자</caption>
+            <tr>
+                <th>종류</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>:hover</td>
+                <td>요소에 마우스를 올리면 해당 태그가 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>:active</td>
+                <td>요소를 마우스로 클릭하고 있는 동안 해당 태그가 선택자로 지정</td>
+            </tr>
+        </table>
+        <div class="malloc_class">
+            <p>Lorem yeah</p>
+            <button>button1</button><br>
+        </div>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>입력 요소 가상 클래스 선택자</h2>
+        입력 요소의 특정 상태를 이용해 선택자로 지정하는 방법<br>
+        <table>
+            <caption>입력 요소 가상 클래스 선택자</caption>
+            <tr>
+                <th>종류</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>:focus</td>
+                <td>입력 요소에 커서가 활성화되면 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>:checked</td>
+                <td>체크박스가 표시되어 있으면 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>:disabled</td>
+                <td>상호작용 요소가 비활성되면(disabled 속성이 사용되면) 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>:enabled</td>
+                <td>상호작용 요소가 활성화되면(disabled 속성이 사용되지 않은 상태면) 선택자로 지정</td>
+            </tr>
+        </table>
+        <input type="text"><br>
+        <input type="checkbox">
+        <label for="usename">
+            Label Lorem Yeah
+            <input type="text" id="usename">이름
+        </label>
+        <input type="text" disabled>
+        <button disabled>버튼</button>
+        <div class="enabled_text">
+            <input type="text">
+            <button>버튼</button>
+        </div>
+        <br>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>구조적 가상 클래스 선택자</h2>
+        구조적 가상 클래스 선택자는 HTML 태그의 사용 위치, 다른 태그와의 관계에 따라 요소를 선택하는 방법<br>
+        <table>
+            <caption>구조적 가상클래스 선택자</caption>
+            <tr>
+                <th>종류</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>E:first-child</td>
+                <td>E 요소의 첫 번째 자식 요소를 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>E:last-child</td>
+                <td>E 요소의 마지막 자식 요소를 선택자로 지정</td>
+            </tr>
+            <tr>
+                <td>E:nth-child(n)</td>
+                <td>E 요소가 부모 요소의 자식 요소 중 n번재 순서가 맞으면 선택</td>
+            </tr>
+            <tr>
+                <td>E:nth-last-child(n)</td>
+                <td>E 요소가 부모 요소의 자식 요소 중 마지막에서 n번째 순서가 맞으면 선택</td>
+            </tr>
+            <tr>
+                <td>E:nth-of-type(n)</td>
+                <td>부모 요소의 자식 요소 중 n번째로 등장하는 E 요소를 선택</td>
+            </tr>
+            <tr>
+                <td>E:nth-last-of-type(n)</td>
+                <td>부모 요소의 자식 요소 중 마지막에서 n번째로 등장하는 E 요소를 선택</td>
+            </tr>
+            <tr>
+                <td>E:first-of-type</td>
+                <td>부모 요소의 자식 요소 중 첫 번재로 등장하는 E 요소를 선택</td>
+            </tr>
+            <tr>
+                <td>E:last-of-type</td>
+                <td>부모 요소의 자식 요소 중 마지막으로 등장하는 E 요소를 선택</td>
+            </tr>
+        </table>
+        -------------------------------------------------------------------------------------------------------<br>
+        <div class="first-last-child-test">
+            <ul>
+                <li>first-child</li>
+                <li>second-child</li>
+                <li>last-child</li>
+            </ul>
+        </div>
+        -------------------------------------------------------------------------------------------------------<br>
+        <div class="nth-child-test1">
+            <p>lorem 0</p>
+            <div>
+                <p>lorem 1</p>
+                <p>lorem 2</p>
+            </div>
+            <div>
+                <p>lorem 3</p>
+                <p>lorem 4</p>
+            </div>
+        </div>
+        -------------------------------------------------------------------------------------------------------<br>
+        <div class="nth-child-test2">
+            <p>lorem 0</p>
+            <div>
+                <p>lorem 1</p>
+                <p>lorem 2</p>
+            </div>
+            <div>
+                <p>lorem 3</p>
+                <p>lorem 4</p>
+            </div>
+        </div>
+        -------------------------------------------------------------------------------------------------------<br>
+        <div class="nth_of_type_test">
+            <p>lorem 0</p>
+            <div>
+                <p>lorem 1</p>
+                <span>span 1</span>
+                <p>lorem 2</p>
+            </div>
+            <div>
+                <p>lorem 3</p>
+                <span>span 2</span>
+                <span>span 3</span>
+                <p>lorem 4</p>
+            </div>
+        </div>
+        -------------------------------------------------------------------------------------------------------<br>
+        <div class="first_of_type_test">
+            <span>span 0</span>
+            <p>lorem 0</p>
+            <div>
+                <span>span 1</span>
+                <p>lorem 1</p>
+                <p>lorem 2</p>
+            </div>
+            <span>span 2</span>
+            <span>span 3</span>
+            <p>lorem 3</p>
+            <p>lorem 4</p>
+        </div>
+        -------------------------------------------------------------------------------------------------------<br>
+    </body>
+</html>

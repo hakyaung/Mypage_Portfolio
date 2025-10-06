@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>멀티미디어 설정하기</title>
+    </head>
+    <body>
+        <h2>audio 태그</h2>
+        audio 태그는 항상 src 속성과 함께 사용<br>
+        <table>
+            <caption>지원 파일 포맷과 미디어 타입</caption>
+            <col style="width: 200px">
+            <col style="width: 100px">
+            <col style="width: 100px">
+            <col style="width: 100px">
+            <tr>
+                <th>웹 브라우저</th>
+                <th>MP3</th>
+                <th>WAV</th>
+                <th>OGG</th>
+            </tr>
+            <tr>
+                <td>인터넷 익스플로러(IE)</td>
+                <td>지원</td>
+                <td>미지원</td>
+                <td>미지원</td>
+            </tr>
+            <tr>
+                <td>엣지(Edge)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>크롬(Chrome))</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>파이어폭스(Firefox)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>사파리(Safari)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>미지원</td>
+            </tr>
+            <tr>
+                <td>오페라(Opera)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+        </table>
+        <table style="width: 300px">
+            <caption>오디오 파일 포맷에 따른 미디어 타입</caption>
+            <tr>
+                <th>파일 포맷</th>
+                <th>미디어 타입</th>
+            </tr>
+            <tr>
+                <td>MP3</td>
+                <td>audio/mpeg</td>
+            </tr>
+            <tr>
+                <td>WAV</td>
+                <td>audio/wav</td>
+            </tr>
+            <tr>
+                <td>OGG</td>
+                <td>audio/ogg</td>
+            </tr>
+        </table>
+        src 속성값에는 삽입하려고 하는 오디오 파일의 경로, 오디오 컨트롤 패널이 웹 브라우저에 노출되도록 controls 속성을 설정<br>
+        <audio src="../../sound/HCJbook/Sasha Alex Sloan - Keep On (Lyric Video).mp3" controls></audio>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>video 태그</h2>
+        video 태그로 비디오 경로를 입력하는 src 속성을 필수로 사용<br>
+        controls 속성을 추가해 사용자가 제어할 수 있는 컨트롤 패널도 표시<br>
+        <table>
+            <caption>지원 파일 포맷과 미디어 타입</caption>
+            <col style="width: 200px">
+            <col style="width: 100px">
+            <col style="width: 100px">
+            <col style="width: 100px">
+            <tr>
+                <th>웹 브라우저</th>
+                <th>MP4</th>
+                <th>WebM</th>
+                <th>Ogg</th>
+            </tr>
+            <tr>
+                <td>인터넷 익스플로러(IE)</td>
+                <td>지원</td>
+                <td>미지원</td>
+                <td>미지원</td>
+            </tr>
+            <tr>
+                <td>엣지(Edge)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>크롬(Chrome))</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>파이어폭스(Firefox)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+            <tr>
+                <td>사파리(Safari)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>미지원</td>
+            </tr>
+            <tr>
+                <td>오페라(Opera)</td>
+                <td>지원</td>
+                <td>지원</td>
+                <td>지원</td>
+            </tr>
+        </table>
+        <table style="width: 300px">
+            <caption>비디오 파일 포맷에 따른 미디어 타입</caption>
+            <tr>
+                <th>파일 포맷</th>
+                <th>미디어 타입</th>
+            </tr>
+            <tr>
+                <td>MP4</td>
+                <td>video/mp4</td>
+            </tr>
+            <tr>
+                <td>WebM</td>
+                <td>video/webm</td>
+            </tr>
+            <tr>
+                <td>Ogg</td>
+                <td>video/ogg</td>
+            </tr>
+        </table>
+        <video src="../../video/Billie Eilish - come out and play (Official Audio).mp4" controls></video>
+
+        <br>
+        -------------------------------------------------------------------------------------------------------
+        <br>
+
+        <h2>source 태그</h2>
+        source 태그는 audio 태그와 video 태그에서 리소스(파일)의 경로와 미디어 타입을 명시하는데 사용<br>
+        <audio controls>
+            <source src="../../sound/HCJbook/Sasha Alex Sloan - Keep On (Lyric Video).wav" type="audio/wav">
+            <source src="../../sound/HCJbook/Sasha Alex Sloan - Keep On (Lyric Video).mp3" type="audio/mp3">
+            지원하지 않는 웹 브라우저입니다.
+        </audio>
+        <br>
+        audio 태그는 먼저 작성한 source 태그의 파일부터 현재 웹 브라우저에서 해당 파일 포맷을 지원하는 확인<br>
+        만약 웹 브라우저에서 지원하지 않는다면 그 다음에 작성된 source 태그의 파일을 같은 방식으로 확인<br>
+        전부 지원하지 않는 형식이라면 마지막에 작성한 텍스트 노출<br>
+    </body>
+</html>
